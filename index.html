@@ -1,30 +1,235 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DriveHaus Motors — Premium Used Cars</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DriveHaus Motors</title>
+
 <style>
-:root{--ink:#111827;--muted:#667085;--line:#e7e9ee;--bg:#f7f8fa}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}header{position:sticky;top:0;z-index:20;background:#fffffff2;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{max-width:1180px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:21px;font-weight:850;letter-spacing:-.7px}.brand span{color:#667085}nav a{color:#344054;text-decoration:none;margin-left:22px;font-size:14px;font-weight:700}.hero{max-width:1180px;margin:28px auto 0;padding:0 22px}.heroBox{min-height:390px;border-radius:28px;overflow:hidden;position:relative;background:linear-gradient(120deg,#0b0d12,#1d2430 48%,#303846);display:flex;align-items:center;padding:58px}.heroBox:after{content:"";position:absolute;right:-100px;bottom:-160px;width:620px;height:620px;border-radius:50%;background:#ffffff14}.eyebrow{color:#bfc6d4;font-size:13px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase}.hero h1{font-size:clamp(40px,6vw,70px);line-height:.98;letter-spacing:-3px;color:#fff;max-width:620px;margin:13px 0}.hero p{color:#c9ced8;font-size:16px;max-width:520px;line-height:1.6}.actions{display:flex;gap:10px;margin-top:25px;flex-wrap:wrap}.btn{display:inline-flex;padding:13px 18px;border-radius:12px;text-decoration:none;font-weight:800;font-size:14px}.primary{background:#fff;color:#111}.ghost{border:1px solid #4a5362;color:#fff}.section{max-width:1180px;margin:44px auto;padding:0 22px}.sectionHead{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px}.section h2{font-size:29px;letter-spacing:-1.2px;margin:0}.sub{color:var(--muted);font-size:14px;margin-top:6px}.filters{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.filter{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 13px;color:#475467;font-weight:700;cursor:pointer}.filter.active{background:#111
-827;color:#fff;border-color:#111827}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 7px 25px #1018280d}.photo{height:210px;background:#dfe3e8;position:relative;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover;display:block}.tag{position:absolute;top:13px;left:13px;background:#fffffff0;padding:7px 9px;border-radius:8px;font-size:11px;font-weight:850}.body{padding:17px}.name{font-size:17px;font-weight:850}.meta{font-size:12px;color:#667085;margin:5px 0 13px}.price{font-size:22px;font-weight:850}.details{display:flex;justify-content:space-between;border-top:1px solid var(--line);margin-top:15px;padding-top:13px;color:#667085;font-size:12px;gap:7px}.cardBtn{display:block;text-align:center;background:#111827;color:#fff;text-decoration:none;padding:12px;border-radius:11px;margin-top:15px;font-weight:800;font-size:13px}.empty,.loading{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;text-align:center;color:#667085;grid-column:1/-1}.about{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:25px}.panel h3{margin:0 0 10px}.panel p{color:#667085;line-height:1.65;font-size:14px}.stat{font-size:31px;font-weight:850}.stat small{font-size:12px;color:#667085;font-weight:650}footer{margin-top:60px;background:#111827;color:#fff;padding:32px 22px}.foot{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot p{margin:5px 0;color:#98a2b3;font-size:13px}@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}.about{grid-template-columns:1fr}.heroBox{padding:38px 28px}}@media(max-width:560px){nav a{display:none}.grid{grid-template-columns:1fr}.heroBox{min-height:430px}.photo{height:230px}.section{margin-top:34px}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f6f7f9;color:#111827}
+header{height:72px;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;padding:0 6%}
+.logo{font-size:24px;font-weight:800}.logo span{color:#667085}
+nav a{margin-left:24px;text-decoration:none;color:#344054;font-weight:600}
+.hero{width:90%;max-width:1200px;margin:32px auto;padding:55px;border-radius:28px;background:linear-gradient(120deg,#0f172a,#374151);color:#fff}
+.hero small{letter-spacing:2px;color:#cbd5e1;font-weight:700}
+.hero h1{font-size:52px;line-height:1;max-width:650px;margin:18px 0}
+.hero p{max-width:600px;color:#d1d5db;font-size:17px;line-height:1.6}
+.btn{display:inline-block;margin-top:15px;padding:14px 20px;border-radius:12px;background:#fff;color:#111827;text-decoration:none;font-weight:700}
+.container{width:90%;max-width:1200px;margin:55px auto}
+h2{font-size:36px;margin-bottom:8px}
+.sub{color:#667085;margin-bottom:25px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:20px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.05)}
+.card img{width:100%;height:220px;object-fit:cover;background:#eee}
+.body{padding:20px}
+.badge{display:inline-block;background:#eef4ff;color:#175cd3;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:700}
+.name{font-size:21px;font-weight:800;margin:12px 0 7px}
+.price{font-size:23px;font-weight:800}
+.details{color:#667085;font-size:14px;margin:10px 0 18px}
+.whatsapp{display:block;text-align:center;background:#111827;color:#fff;padding:13px;border-radius:11px;text-decoration:none;font-weight:700}
+.empty{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:40px;text-align:center;color:#667085;grid-column:1/-1}
+footer{margin-top:70px;background:#111827;color:#fff;text-align:center;padding:35px}
+@media(max-width:800px){
+nav{display:none}
+.hero{padding:35px 25px}
+.hero h1{font-size:40px}
+.grid{grid-template-columns:1fr}
+.container,.hero{width:92%}
+}
 </style>
 </head>
+
 <body>
-<header><div class="nav"><div class="brand">DriveHaus <span>Motors</span></div><nav><a href="#cars">Inventory</a><a href="#about">About</a><a href="#contact">Contact</a></nav></div></header>
-<main>
-<section class="hero"><div class="heroBox"><div><div class="eyebrow">Premium pre-owned cars</div><h1>Find a Car you'll love to drive.</h1><p>Curated used cars, transparent pricing and a direct WhatsApp enquiry — built for modern dealerships.</p><div class="actions"><a class="btn primary" href="#cars">Explore inventory</a><a class="btn ghost" id="heroWhatsApp" href="#" target="_blank" rel="noopener">WhatsApp us</a></div></div></div></section>
-<section class="section" id="cars"><div class="sectionHead"><div><h2>Available cars</h2><div class="sub" id="inventorySub">Loading live inventory…</div></div></div><div class="filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="SUV">SUV</button><button class="filter" data-filter="Sedan">Sedan</button><button class="filter" data-filter="Hatchback">Hatchback</button></div><div class="grid" id="grid"><div class="loading">Loading cars from the dealer inventory…</div></div></section>
-<section class="section" id="about"><div class="about"><div class="panel"><h3>Why DriveHaus?</h3><p>We make the buying journey simple: inspect the car, see clear details, ask questions on WhatsApp and schedule a visit.</p></div><div class="panel"><div class="stat" id="carCount">— <small>available cars</small></div><p>Live inventory powered by the dealer database.</p></div></div></section>
-</main><footer id="contact"><div class="foot"><div><strong>DriveHaus Motors</strong><p>Premium Used Cars · India</p></div><div><strong>Enquiries</strong><p id="footerPhone">WhatsApp available</p></div></div></footer>
+
+<header>
+<div class="logo">DriveHaus <span>Motors</span></div>
+<nav>
+<a href="#cars">Inventory</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<small>PREMIUM PRE-OWNED CARS</small>
+<h1>Find a car you'll love to drive.</h1>
+<p>Explore verified pre-owned cars with transparent details and direct WhatsApp enquiries.</p>
+<a class="btn" href="#cars">Explore Inventory</a>
+</div>
+</section>
+
+<section class="container" id="cars">
+
+<h2>Available Cars</h2>
+<div class="sub" id="status">Loading live inventory...</div>
+
+<div class="grid" id="carsGrid">
+<div class="empty">Loading cars...</div>
+</div>
+
+</section>
+
+<section class="container" id="about">
+<h2>Why DriveHaus?</h2>
+<p class="sub">
+Simple, transparent and convenient used-car buying experience.
+</p>
+</section>
+
+<footer id="contact">
+<strong>DriveHaus Motors</strong>
+<p>Premium Used Cars</p>
+</footer>
+
 <script>
-/* Replace ONLY these two values. Never use a secret/service-role key here. */
-const SUPABASE_URL = "https://lpdalirembwxxeurwhhh.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_lUBNsX4r6muXgVBqDDp-Vg_VSVIJnWA";
-const DEALER_WHATSAPP="919999999999";
-const grid=document.getElementById("grid"),sub=document.getElementById("inventorySub"),count=document.getElementById("carCount");let allCars=[];
-function esc(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
-function price(v){const n=Number(v);return Number.isFinite(n)?new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(n):(v||"Price on request")}
-function num(v){const n=Number(v);return Number.isFinite(n)?new Intl.NumberFormat("en-IN").format(n):(v||"—")}
-function wa(name=""){return `https://wa.me/${DEALER_WHATSAPP}?text=${encodeURIComponent(name?`Hi DriveHaus, I'm interested in the ${name}. Please share more details.`:`Hi DriveHaus, I'm interested in your used cars.`)}`}
-document.getElementById("heroWhatsApp").href=wa();document.getElementById("footerPhone").textContent=`+${DEALER_WHATSAPP}`;
-function render(list){if(!list.length){grid.innerHTML='<div class="empty">No cars available in this category.</div>';return}grid.innerHTML=list.map(c=>{const img=c.image_url||"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=85";return `<article class="card"><div class="photo"><img src="${esc(img)}" alt="${esc(c.name||"Used Car")}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=85'"><span class="tag">${esc(String(c.status||"Available").toUpperCase())}</span></div><div class="body"><div class="name">${esc(c.name||"Untitled car")}</div><div class="meta">${esc(c.year||"—")} · ${esc(c.type||"Car")}</div><div class="price">${price(c.price)}</div><div class="details"><span>${num(c.km)} km</span><span>${esc(c.fuel||"—")}</span><span>${esc(c.transmission||"—")}</span></div><a class="cardBtn" href="${wa(c.name||"")}" target="_blank" rel="noopener">Enquire on WhatsApp</a></div></article>`}).join("")}
-async function loadCars(){try{const r=await fetch(`${SUPABASE_URL}/rest/v1/Cars?select=*`,{headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:`Bearer ${SUPABASE_PUBLISHABLE_KEY}`}});if(!r.ok)throw new Error(await r.text());const data=await r.json();render(data)}catch(e){console.error(e);grid.innerHTML='<div class="empty"><strong>Could not load live inventory.</strong><br>'+esc(e.message)+'</div>'}}
+
+const SUPABASE_URL =
+"https://lpdalirembwxxeurwhhh.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_lUBNsX4r6muXgVBqDDp-Vg_VSVIJnWA";
+
+const grid = document.getElementById("carsGrid");
+const status = document.getElementById("status");
+
+
+async function loadCars(){
+
+try{
+
+const response = await fetch(
+SUPABASE_URL + "/rest/v1/Cars?select=*",
+{
+method:"GET",
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer " + SUPABASE_KEY,
+"Accept":"application/json"
+}
+}
+);
+
+if(!response.ok){
+
+const error = await response.text();
+
+throw new Error(error);
+
+}
+
+const cars = await response.json();
+
+console.log("Cars received:",cars);
+
+if(cars.length === 0){
+
+grid.innerHTML =
+'<div class="empty">No cars available right now.</div>';
+
+status.textContent="No cars available";
+
+return;
+
+}
+
+status.textContent =
+cars.length + " car" +
+(cars.length === 1 ? "" : "s") +
+" available";
+
+grid.innerHTML = cars.map(function(car){
+
+const name = car.Name || "Used Car";
+const price = car.Price || 0;
+const year = car.Year || "";
+const km = car.Km || "";
+const fuel = car.Fuel || "";
+const transmission = car.Transmission || "";
+const image = car.Image_url || "";
+const carStatus = car.Status || "Available";
+
+const whatsappText =
+encodeURIComponent(
+"Hi, I am interested in the " +
+name +
+" listed on DriveHaus Motors."
+);
+
+return `
+
+<div class="card">
+
+<img
+src="${image}"
+alt="${name}"
+onerror="this.style.display='none'"
+>
+
+<div class="body">
+
+<span class="badge">
+${carStatus}
+</span>
+
+<div class="name">
+${name}
+</div>
+
+<div class="price">
+₹${Number(price).toLocaleString("en-IN")}
+</div>
+
+<div class="details">
+${year} • ${Number(km).toLocaleString("en-IN")} km
+<br>
+${fuel} • ${transmission}
+</div>
+
+<a
+class="whatsapp"
+href="https://wa.me/919999999999?text=${whatsappText}"
+target="_blank"
+>
+Enquire on WhatsApp
+</a>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}catch(error){
+
+console.error("SUPABASE ERROR:",error);
+
+status.textContent="Inventory connection error";
+
+grid.innerHTML=`
+
+<div class="empty">
+
+<h3>Could not load live inventory.</h3>
+
+<p>
+${error.message}
+</p>
+
+</div>
+
+`;
+
+}
+
+}
+
+loadCars();
+
+</script>
+
+</body>
+</html>
