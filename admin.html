@@ -3,225 +3,203 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Dealer Dashboard</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-  margin:0;
-  background:#f5f7fa;
-  color:#101828;
-  font-family:Arial,sans-serif;
+margin:0;
+background:#f5f7fa;
+color:#101828;
+font-family:Arial,sans-serif
 }
 
 header{
-  background:#111827;
-  color:white;
-  padding:20px;
+background:#111827;
+color:white;
+padding:20px
 }
 
 .header{
-  max-width:900px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
+max-width:900px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px
 }
 
 h1{
-  margin:0;
-  font-size:22px;
+margin:0;
+font-size:22px
 }
 
 .subtitle{
-  margin-top:5px;
-  color:#98a2b3;
+margin-top:5px;
+color:#98a2b3
 }
 
 .logout{
-  border:0;
-  background:white;
-  color:#111827;
-  padding:11px 16px;
-  border-radius:9px;
-  font-weight:bold;
+border:0;
+background:white;
+color:#111827;
+padding:11px 16px;
+border-radius:9px;
+font-weight:bold
 }
 
 .container{
-  width:92%;
-  max-width:900px;
-  margin:25px auto;
+width:92%;
+max-width:900px;
+margin:25px auto
 }
 
 .card{
-  background:white;
-  border:1px solid #e4e7ec;
-  border-radius:18px;
-  padding:22px;
-  margin-bottom:22px;
+background:white;
+border:1px solid #e4e7ec;
+border-radius:18px;
+padding:22px;
+margin-bottom:22px
 }
 
 label{
-  display:block;
-  margin-top:15px;
-  margin-bottom:6px;
-  font-size:14px;
-  font-weight:bold;
+display:block;
+margin-top:15px;
+margin-bottom:6px;
+font-size:14px;
+font-weight:bold
 }
 
-input,
-select,
-textarea{
-  width:100%;
-  padding:13px;
-  border:1px solid #d0d5dd;
-  border-radius:10px;
-  font-size:15px;
+input,select,textarea{
+width:100%;
+padding:13px;
+border:1px solid #d0d5dd;
+border-radius:10px;
+font-size:15px
 }
 
 textarea{
-  min-height:100px;
+min-height:100px
 }
 
 .save{
-  width:100%;
-  margin-top:20px;
-  padding:15px;
-  border:0;
-  border-radius:10px;
-  background:#111827;
-  color:white;
-  font-size:16px;
-  font-weight:bold;
-}
-
-.save:disabled{
-  opacity:.6;
-}
-
-.message{
-  display:none;
-  margin-top:15px;
-  padding:12px;
-  border-radius:10px;
-  font-weight:bold;
-}
-
-.success{
-  display:block;
-  background:#ecfdf3;
-  color:#027a48;
-}
-
-.error{
-  display:block;
-  background:#fef3f2;
-  color:#b42318;
+width:100%;
+margin-top:20px;
+padding:15px;
+border:0;
+border-radius:10px;
+background:#111827;
+color:white;
+font-size:16px;
+font-weight:bold
 }
 
 .car{
-  padding:18px 0;
-  border-bottom:1px solid #eaecf0;
+padding:18px 0;
+border-bottom:1px solid #eaecf0
 }
 
 .car:last-child{
-  border-bottom:0;
+border-bottom:0
 }
 
 .car img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
-  border-radius:12px;
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:12px
 }
 
 .car h3{
-  margin-bottom:5px;
+margin:12px 0 5px
 }
 
 .car p{
-  margin:6px 0;
-  color:#667085;
+margin:6px 0;
+color:#667085
 }
 
 .actions{
-  display:flex;
-  gap:10px;
-  margin-top:14px;
+display:flex;
+gap:10px;
+margin-top:14px
 }
 
-.action-btn{
-  flex:1;
-  padding:12px;
-  border:0;
-  border-radius:9px;
-  font-weight:bold;
-  font-size:14px;
+.actions button{
+flex:1;
+padding:12px;
+border:0;
+border-radius:9px;
+font-weight:bold
 }
 
-.sold-btn{
-  background:#ecfdf3;
-  color:#027a48;
+.sold{
+background:#ecfdf3;
+color:#027a48
 }
 
-.delete-btn{
-  background:#fef3f2;
-  color:#b42318;
+.delete{
+background:#fef3f2;
+color:#b42318
+}
+
+.message{
+display:none;
+margin-top:15px;
+padding:12px;
+border-radius:10px;
+font-weight:bold
+}
+
+.success{
+display:block;
+background:#ecfdf3;
+color:#027a48
+}
+
+.error{
+display:block;
+background:#fef3f2;
+color:#b42318
 }
 
 .empty{
-  text-align:center;
-  padding:25px;
-  color:#667085;
+text-align:center;
+padding:25px;
+color:#667085
 }
 
 @media(max-width:600px){
-
-  .header{
-    align-items:flex-start;
-  }
-
-  .actions{
-    flex-direction:column;
-  }
-
+.header{
+align-items:flex-start
+}
+.actions{
+flex-direction:column
+}
 }
 </style>
 </head>
 
 <body>
 
-
 <header>
-
 <div class="header">
 
 <div>
 <h1>🚗 Dealer Dashboard</h1>
-
-<div class="subtitle">
-Manage your car inventory
-</div>
+<div class="subtitle">Manage your car inventory</div>
 </div>
 
-<button
-class="logout"
-onclick="logout()">
+<button class="logout" onclick="logout()">
 Logout
 </button>
 
 </div>
-
 </header>
 
 
 <div class="container">
-
 
 <!-- ADD CAR -->
 
@@ -229,115 +207,53 @@ Logout
 
 <h2>Add New Car</h2>
 
-
 <label>Car Name</label>
-
-<input
-id="name"
-placeholder="Mahindra Scorpio N"
->
-
+<input id="name" placeholder="Mahindra Scorpio N">
 
 <label>Price</label>
-
-<input
-id="price"
-type="number"
-placeholder="1550000"
->
-
+<input id="price" type="number" placeholder="1550000">
 
 <label>Year</label>
-
-<input
-id="year"
-type="number"
-placeholder="2024"
->
-
+<input id="year" type="number" placeholder="2024">
 
 <label>Kilometres</label>
-
-<input
-id="km"
-type="number"
-placeholder="18000"
->
-
+<input id="km" type="number" placeholder="18000">
 
 <label>Fuel</label>
-
 <select id="fuel">
-
-<option value="">
-Select fuel
-</option>
-
+<option value="">Select fuel</option>
 <option>Petrol</option>
 <option>Diesel</option>
 <option>CNG</option>
 <option>Electric</option>
 <option>Hybrid</option>
-
 </select>
-
 
 <label>Transmission</label>
-
 <select id="transmission">
-
-<option value="">
-Select transmission
-</option>
-
+<option value="">Select transmission</option>
 <option>Manual</option>
 <option>Automatic</option>
-
 </select>
 
-
 <label>Description</label>
-
-<textarea
-id="description"
-placeholder="Write car details">
-</textarea>
-
+<textarea id="description" placeholder="Write car details"></textarea>
 
 <label>Car Image</label>
-
-<input
-id="image"
-type="file"
-accept="image/*"
->
-
+<input id="image" type="file" accept="image/*">
 
 <label>Status</label>
-
 <select id="status">
-
 <option>Available</option>
 <option>Sold</option>
 <option>Reserved</option>
-
 </select>
 
-
-<button
-class="save"
-id="saveButton"
-onclick="saveCar()">
-
+<button class="save" id="saveButton" onclick="saveCar()">
 Publish Car
-
 </button>
 
-
-<div
-id="message"
-class="message">
-</div>
+<div id="message" class="message"></div>
 
 </div>
 
@@ -349,37 +265,28 @@ class="message">
 <h2>My Inventory</h2>
 
 <div id="inventory">
-
 Loading cars...
-
 </div>
 
 </div>
-
 
 </div>
 
 
 <script>
 
+/* =========================
+   LOGIN
+========================= */
 
-/* =====================================
-   LOGIN PROTECTION
-===================================== */
-
-if(
-localStorage.getItem("dealer_logged_in")
-!=="true"
-){
-
+if(localStorage.getItem("dealer_logged_in") !== "true"){
 window.location.href="login.html";
-
 }
 
 
-/* =====================================
+/* =========================
    SUPABASE
-===================================== */
+========================= */
 
 const SUPABASE_URL =
 "https://lpdalirembwxxeurwhhh.supabase.co";
@@ -387,10 +294,6 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_lUBNsX4r6muXgVBqDDp-Vg_VSVIJnWA";
 
-
-/* =====================================
-   ELEMENTS
-===================================== */
 
 const inventory =
 document.getElementById("inventory");
@@ -402,103 +305,64 @@ const saveButton =
 document.getElementById("saveButton");
 
 
-/* =====================================
+/* =========================
    LOGOUT
-===================================== */
+========================= */
 
 function logout(){
 
-localStorage.removeItem(
-"dealer_logged_in"
-);
+localStorage.removeItem("dealer_logged_in");
+localStorage.removeItem("dealer_access_token");
+localStorage.removeItem("dealer_refresh_token");
 
-localStorage.removeItem(
-"dealer_access_token"
-);
-
-localStorage.removeItem(
-"dealer_refresh_token"
-);
-
-window.location.href="login.html";
+window.location.replace("login.html");
 
 }
 
 
-/* =====================================
+/* =========================
    MESSAGE
-===================================== */
+========================= */
 
-function showMessage(
-text,
-type
-){
+function showMessage(text,type){
 
 message.textContent=text;
-
-message.className=
-"message "+type;
+message.className="message "+type;
 
 }
 
 
-/* =====================================
+/* =========================
    LOAD INVENTORY
-===================================== */
+========================= */
 
 async function loadInventory(){
 
-inventory.innerHTML=
-"<div class='empty'>Loading cars...</div>";
+inventory.innerHTML="<div class='empty'>Loading cars...</div>";
 
 try{
 
-const response=
-await fetch(
-
-SUPABASE_URL+
-"/rest/v1/Cars?select=*",
-
+const response = await fetch(
+SUPABASE_URL + "/rest/v1/Cars?select=*",
 {
-
 method:"GET",
-
 headers:{
-
-"apikey":
-SUPABASE_KEY,
-
-"Authorization":
-"Bearer "+SUPABASE_KEY,
-
-"Accept":
-"application/json"
-
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Accept":"application/json"
 }
-
 }
 );
 
-
-const text=
-await response.text();
-
+const result = await response.text();
 
 if(!response.ok){
-
-throw new Error(text);
-
+throw new Error(result);
 }
 
+const cars = JSON.parse(result);
 
-const cars=
-JSON.parse(text);
-
-
-if(
-!Array.isArray(cars) ||
-cars.length===0
-){
+if(!Array.isArray(cars) || cars.length === 0){
 
 inventory.innerHTML=
 "<div class='empty'>No cars in inventory.</div>";
@@ -508,24 +372,445 @@ return;
 }
 
 
-/* =====================================
-   CREATE INVENTORY CARDS
-===================================== */
+/* CREATE CAR CARDS */
+
+inventory.innerHTML="";
+
+cars.forEach(function(car){
+
+const box=document.createElement("div");
+
+box.className="car";
+
+
+if(car.Image_url){
+
+const img=document.createElement("img");
+
+img.src=car.Image_url;
+
+img.alt=car.Name || "Car";
+
+box.appendChild(img);
+
+}
+
+
+const title=document.createElement("h3");
+
+title.textContent=car.Name || "Unnamed Car";
+
+box.appendChild(title);
+
+
+const price=document.createElement("p");
+
+price.textContent=
+"₹"+Number(car.Price || 0).toLocaleString("en-IN");
+
+box.appendChild(price);
+
+
+const details=document.createElement("p");
+
+details.textContent=
+(car.Year || "")+
+" · "+
+Number(car.Km || 0).toLocaleString("en-IN")+
+" km";
+
+box.appendChild(details);
+
+
+const fuel=document.createElement("p");
+
+fuel.textContent=
+(car.Fuel || "")+
+" · "+
+(car.Transmission || "");
+
+box.appendChild(fuel);
+
+
+const status=document.createElement("p");
+
+status.textContent="Status: ";
+
+const bold=document.createElement("b");
+
+bold.textContent=car.Status || "Available";
+
+status.appendChild(bold);
+
+box.appendChild(status);
+
+
+/* BUTTONS */
+
+const actions=document.createElement("div");
+
+actions.className="actions";
+
+
+const soldButton=document.createElement("button");
+
+soldButton.className="sold";
+
+soldButton.textContent="🟢 Mark Sold";
+
+soldButton.onclick=function(){
+
+markSold(car.Name);
+
+};
+
+
+actions.appendChild(soldButton);
+
+
+const deleteButton=document.createElement("button");
+
+deleteButton.className="delete";
+
+deleteButton.textContent="🗑️ Delete";
+
+deleteButton.onclick=function(){
+
+deleteCar(car.Name);
+
+};
+
+
+actions.appendChild(deleteButton);
+
+
+box.appendChild(actions);
+
+inventory.appendChild(box);
+
+});
+
+
+}catch(error){
+
+console.error("Inventory error:",error);
 
 inventory.innerHTML=
-cars.map(
-function(car){
+"<div class='empty'>"+
+"<b>Inventory error</b>"+
+"<br><br>"+
+error.message+
+"</div>";
 
-const encodedName=
-encodeURIComponent(
-car.Name || ""
+}
+
+}
+
+
+/* =========================
+   SAVE CAR
+========================= */
+
+async function saveCar(){
+
+try{
+
+saveButton.disabled=true;
+saveButton.textContent="Saving...";
+
+
+const name=document.getElementById("name").value.trim();
+const price=document.getElementById("price").value;
+const year=document.getElementById("year").value;
+const km=document.getElementById("km").value;
+const fuel=document.getElementById("fuel").value;
+const transmission=document.getElementById("transmission").value;
+const description=document.getElementById("description").value.trim();
+const status=document.getElementById("status").value;
+const file=document.getElementById("image").files[0];
+
+
+if(!name || !price || !year || !km || !fuel || !transmission){
+
+throw new Error("Please fill all required fields.");
+
+}
+
+if(!file){
+
+throw new Error("Please select a car image.");
+
+}
+
+
+showMessage("Uploading image...","success");
+
+
+const fileName=
+Date.now()+"-"+file.name.replace(/[^a-zA-Z0-9.-]/g,"-");
+
+
+const uploadResponse=await fetch(
+
+SUPABASE_URL+
+"/storage/v1/object/Car%20images/"+
+encodeURIComponent(fileName),
+
+{
+method:"POST",
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Content-Type":file.type
+},
+
+body:file
+
+}
 );
 
 
-return `
+if(!uploadResponse.ok){
 
-<div class="car">
+throw new Error(
+"Image upload failed: "+
+await uploadResponse.text()
+);
+
+}
 
 
-${
-car.Image_url
+const imageUrl=
+SUPABASE_URL+
+"/storage/v1/object/public/Car%20images/"+
+encodeURIComponent(fileName);
+
+
+const carData={
+
+Name:name,
+Price:Number(price),
+Year:Number(year),
+Km:Number(km),
+Fuel:fuel,
+Transmission:transmission,
+Description:description,
+Image_url:imageUrl,
+Status:status
+
+};
+
+
+showMessage("Saving car...","success");
+
+
+const response=await fetch(
+
+SUPABASE_URL+"/rest/v1/Cars",
+
+{
+method:"POST",
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Content-Type":"application/json",
+"Prefer":"return=minimal"
+},
+
+body:JSON.stringify(carData)
+
+}
+
+);
+
+
+if(!response.ok){
+
+throw new Error(
+"Car save failed: "+
+await response.text()
+);
+
+}
+
+
+showMessage(
+"🎉 Car published successfully!",
+"success"
+);
+
+
+document.getElementById("name").value="";
+document.getElementById("price").value="";
+document.getElementById("year").value="";
+document.getElementById("km").value="";
+document.getElementById("fuel").value="";
+document.getElementById("transmission").value="";
+document.getElementById("description").value="";
+document.getElementById("image").value="";
+document.getElementById("status").value="Available";
+
+
+await loadInventory();
+
+
+}catch(error){
+
+console.error(error);
+
+showMessage(
+error.message,
+"error"
+);
+
+}finally{
+
+saveButton.disabled=false;
+saveButton.textContent="Publish Car";
+
+}
+
+}
+
+
+/* =========================
+   SOLD
+========================= */
+
+async function markSold(name){
+
+if(!confirm("Mark "+name+" as SOLD?")){
+return;
+}
+
+try{
+
+const response=await fetch(
+
+SUPABASE_URL+
+"/rest/v1/Cars?Name=eq."+
+encodeURIComponent(name),
+
+{
+method:"PATCH",
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Content-Type":"application/json",
+"Prefer":"return=minimal"
+},
+
+body:JSON.stringify({
+Status:"Sold"
+})
+
+}
+
+);
+
+
+if(!response.ok){
+
+throw new Error(
+await response.text()
+);
+
+}
+
+
+showMessage(
+"✅ "+name+" marked as SOLD!",
+"success"
+);
+
+
+await loadInventory();
+
+
+}catch(error){
+
+showMessage(
+"Sold failed: "+error.message,
+"error"
+);
+
+}
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+async function deleteCar(name){
+
+if(!confirm("Delete "+name+" permanently?")){
+return;
+}
+
+try{
+
+const response=await fetch(
+
+SUPABASE_URL+
+"/rest/v1/Cars?Name=eq."+
+encodeURIComponent(name),
+
+{
+method:"DELETE",
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Prefer":"return=minimal"
+}
+
+}
+
+);
+
+
+if(!response.ok){
+
+throw new Error(
+await response.text()
+);
+
+}
+
+
+showMessage(
+"🗑️ "+name+" deleted successfully!",
+"success"
+);
+
+
+await loadInventory();
+
+
+}catch(error){
+
+showMessage(
+"Delete failed: "+error.message,
+"error"
+);
+
+}
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadInventory();
+
+</script>
+
+</body>
+</html>
