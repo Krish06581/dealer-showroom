@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DriveHaus — Premium Used Cars</title>
+<style>
+:root{--ink:#111827;--muted:#667085;--line:#e7e9ee;--bg:#f7f8fa;--white:#fff;--accent:#0f172a}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{max-width:1180px;margin:auto;padding:17px 22px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:22px;font-weight:800;letter-spacing:-.7px}.brand span{color:#667085}.nav a{color:#344054;text-decoration:none;margin-left:24px;font-size:14px;font-weight:600}
+.hero{max-width:1180px;margin:28px auto 0;padding:0 22px}.heroBox{min-height:390px;border-radius:28px;overflow:hidden;position:relative;background:linear-gradient(120deg,#0b0d12 0%,#1d2430 48%,#303846 100%);display:flex;align-items:center;padding:58px}
+.heroBox:after{content:"";position:absolute;right:-100px;bottom:-160px;width:620px;height:620px;border-radius:50%;background:rgba(255,255,255,.08)}
+.eyebrow{color:#bfc6d4;font-size:13px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase}.hero h1{font-size:clamp(38px,6vw,70px);line-height:.98;letter-spacing:-3px;color:#fff;max-width:620px;margin:13px 0}.hero p{color:#c9ced8;font-size:16px;max-width:500px;line-height:1.6}.actions{display:flex;gap:10px;margin-top:25px;flex-wrap:wrap}.btn{display:inline-flex;padding:13px 18px;border-radius:12px;text-decoration:none;font-weight:700;font-size:14px}.primary{background:#fff;color:#111}.ghost{border:1px solid #4a5362;color:#fff}
+.section{max-width:1180px;margin:44px auto;padding:0 22px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:18px}.section h2{font-size:29px;letter-spacing:-1.2px;margin:0}.sub{color:var(--muted);font-size:14px;margin-top:6px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.filter{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 13px;color:#475467;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 7px 25px rgba(16,24,40,.05)}.photo{height:210px;background:#dfe3e8;position:relative;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover}.tag{position:absolute;top:13px;left:13px;background:rgba(255,255,255,.92);padding:7px 9px;border-radius:8px;font-size:11px;font-weight:800}.body{padding:17px}.meta{font-size:12px;color:#667085;margin:5px 0 13px}.price{font-size:22px;font-weight:800}.details{display:flex;justify-content:space-between;border-top:1px solid var(--line);margin-top:15px;padding-top:13px;color:#667085;font-size:12px}.cardBtn{display:block;text-align:center;background:#111827;color:#fff;text-decoration:none;padding:12px;border-radius:11px;margin-top:15px;font-weight:700;font-size:13px}
+.about{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:25px}.panel h3{margin:0 0 10px}.panel p{color:#667085;line-height:1.65;font-size:14px}.stat{font-size:31px;font-weight:800}.stat small{font-size:12px;color:#667085;font-weight:600}
+footer{margin-top:60px;background:#111827;color:#fff;padding:32px 22px}.foot{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot p{margin:5px 0;color:#98a2b3;font-size:13px}
+@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}.about{grid-template-columns:1fr}.heroBox{padding:38px 28px}}
+@media(max-width:560px){.nav a{display:none}.grid{grid-template-columns:1fr}.heroBox{min-height:430px}.photo{height:230px}.section{margin-top:34px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">DriveHaus <span>Motors</span></div><nav><a href="#cars">Inventory</a><a href="#about">About</a><a href="#contact">Contact</a></nav></div></header>
+
+<main>
+<section class="hero"><div class="heroBox"><div><div class="eyebrow">Premium pre-owned cars</div><h1>Find a car you'll love to drive.</h1><p>Curated used cars, transparent pricing and a direct WhatsApp enquiry — built for modern dealerships.</p><div class="actions"><a class="btn primary" href="#cars">Explore inventory</a><a class="btn ghost" href="https://wa.me/919999999999?text=Hi%20DriveHaus%2C%20I%27m%20interested%20in%20your%20cars." target="_blank">WhatsApp us</a></div></div></div></section>
+
+<section class="section" id="cars">
+<div class="sectionHead"><div><h2>Available cars</h2><div class="sub">6 hand-picked vehicles ready for enquiry</div></div></div>
+<div class="filters"><button class="filter" onclick="filterCars('all')">All</button><button class="filter" onclick="filterCars('SUV')">SUV</button><button class="filter" onclick="filterCars('Sedan')">Sedan</button><button class="filter" onclick="filterCars('Hatchback')">Hatchback</button></div>
+<div class="grid" id="grid"></div>
+</section>
+
+<section class="section" id="about"><div class="about"><div class="panel"><h3>Why DriveHaus?</h3><p>We make the buying journey simple: inspect the car, see clear details, ask questions on WhatsApp and schedule a visit. This demo can be white-labelled for any local used-car dealer.</p></div><div class="panel"><div class="stat">120+ <small>cars sold</small></div><p>Trusted by local buyers with a focus on transparent listings.</p></div></div></section>
+</main>
+
+<footer id="contact"><div class="foot"><div><strong>DriveHaus Motors</strong><p>Premium Used Cars · Bhopal</p></div><div><strong>Enquiries</strong><p>+91 99999 99999 · Mon–Sun</p></div></div></footer>
+
+<script>
+const cars=[
+{name:"Mahindra Thar",type:"SUV",year:"2023",km:"28,400 km",fuel:"Diesel",price:"₹12.49 Lakh",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=85"},
+{name:"Hyundai Creta",type:"SUV",year:"2022",km:"34,200 km",fuel:"Petrol",price:"₹11.20 Lakh",img:"https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=1200&q=85"},
+{name:"Maruti Suzuki Brezza",type:"SUV",year:"2024",km:"16,800 km",fuel:"Petrol",price:"₹9.85 Lakh",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=85"},
+{name:"Honda City",type:"Sedan",year:"2022",km:"29,100 km",fuel:"Petrol",price:"₹9.45 Lakh",img:"https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=85"},
+{name:"Volkswagen Virtus",type:"Sedan",year:"2023",km:"21,700 km",fuel:"Petrol",price:"₹12.10 Lakh",img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85"},
+{name:"Tata Altroz",type:"Hatchback",year:"2023",km:"19,600 km",fuel:"Petrol",price:"₹7.25 Lakh",img:"https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=85"}
+];
+function render(list){document.getElementById("grid").innerHTML=list.map(c=>`<article class="card"><div class="photo"><img src="${c.img}" alt="${c.name}"><span class="tag">VERIFIED LISTING</span></div><div class="body"><strong>${c.name}</strong><div class="meta">${c.year} · ${c.type}</div><div class="price">${c.price}</div><div class="details"><span>${c.km}</span><span>${c.fuel}</span></div><a class="cardBtn" href="https://wa.me/919999999999?text=Hi%20DriveHaus%2C%20I%27m%20interested%20in%20the%20${encodeURIComponent(c.name)}." target="_blank">Enquire on WhatsApp</a></div></article>`).join("")}
+function filterCars(type){render(type==="all"?cars:cars.filter(c=>c.type===type))}
+render(cars);
+</script>
+</body></html>
