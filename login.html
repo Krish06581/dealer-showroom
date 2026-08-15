@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dealer Login</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:Arial,sans-serif;
+background:#f5f7fa;
+color:#101828;
+}
+
+.login-box{
+width:92%;
+max-width:420px;
+background:#fff;
+padding:30px;
+border-radius:22px;
+border:1px solid #e4e7ec;
+box-shadow:0 10px 35px rgba(0,0,0,.08);
+}
+
+.logo{
+font-size:24px;
+font-weight:800;
+margin-bottom:6px;
+}
+
+.subtitle{
+color:#667085;
+margin-bottom:28px;
+}
+
+label{
+display:block;
+font-size:14px;
+font-weight:700;
+margin:15px 0 7px;
+}
+
+input{
+width:100%;
+padding:14px;
+border:1px solid #d0d5dd;
+border-radius:10px;
+font-size:15px;
+outline:none;
+}
+
+input:focus{
+border-color:#111827;
+}
+
+button{
+width:100%;
+margin-top:22px;
+padding:15px;
+border:0;
+border-radius:11px;
+background:#111827;
+color:#fff;
+font-size:16px;
+font-weight:800;
+cursor:pointer;
+}
+
+button:disabled{
+opacity:.6;
+}
+
+.message{
+display:none;
+margin-top:15px;
+padding:13px;
+border-radius:10px;
+font-size:14px;
+font-weight:600;
+}
+
+.error{
+display:block;
+background:#fef3f2;
+color:#b42318;
+}
+
+.info{
+display:block;
+background:#eff8ff;
+color:#175cd3;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+<div class="logo">DriveHaus Motors</div>
+
+<div class="subtitle">
+Dealer Dashboard Login
+</div>
+
+<form id="loginForm">
+
+<label>Email</label>
+
+<input
+id="email"
+type="email"
+placeholder="Enter your email"
+required
+>
+
+<label>Password</label>
+
+<input
+id="password"
+type="password"
+placeholder="Enter your password"
+required
+>
+
+<button id="loginButton" type="submit">
+Login
+</button>
+
+</form>
+
+<div id="message" class="message"></div>
+
+</div>
+
+
+<script>
+
+const SUPABASE_URL =
+"https://lpdalirembwxxeurwhhh.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_lUBNsX4r6muXgVBqDDp-Vg_VSVIJnWA";
+
+
+const form =
+document.getElementById("loginForm");
+
+const button =
+document.getElementById("loginButton");
+
+const message =
+document.getElementById("message");
+
+
+function showMessage(text,type){
+
+message.textContent=text;
+
+message.className=
+"message "+type;
+
+}
+
+
+form.addEventListener("submit",async function(event){
+
+event.preventDefault();
+
+button.disabled=true;
+button.textContent="Logging in...";
+
+const email=
+document.getElementById("email").value.trim();
+
+const password=
+document.getElementById("password").value;
+
+
+try{
+
+const response=
+await fetch(
+SUPABASE_URL+
+"/auth/v1/token?grant_type=password",
+{
+method:"POST",
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+email:email,
+password:password
+})
+}
+);
+
+
+const data=
+await response.json();
+
+
+if(!response.ok){
+
+throw new Error(
+data.error_description ||
+data.msg ||
+"Invalid email or password."
+);
+
+}
+
+
+/*
+Save login session
+*/
+
+localStorage.setItem(
+"dealer_access_token",
+data.access_token
+);
+
+localStorage.setItem(
+"dealer_refresh_token",
+data.refresh_token
+);
+
+localStorage.setItem(
+"dealer_logged_in",
+"true"
+);
+
+
+/*
+Open dashboard
+*/
+
+window.location.href="admin.html";
+
+
+}catch(error){
+
+showMessage(
+error.message,
+"error"
+);
+
+button.disabled=false;
+button.textContent="Login";
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
