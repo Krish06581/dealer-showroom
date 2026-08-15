@@ -3,143 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Dealer Dashboard</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f5f7fa;
-  color:#101828;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5f7fa;
+color:#101828
 }
 
 header{
-  background:#111827;
-  color:white;
-  padding:20px;
+background:#111827;
+color:white;
+padding:22px 5%
 }
 
-header h1{
-  margin:0;
-  font-size:24px;
-}
-
-header p{
-  margin:6px 0 0;
-  color:#98a2b3;
-}
+header h1{margin:0}
+header p{color:#98a2b3;margin:6px 0 0}
 
 .container{
-  width:92%;
-  max-width:900px;
-  margin:30px auto;
+width:92%;
+max-width:1100px;
+margin:25px auto
 }
 
-.form{
-  background:white;
-  border:1px solid #e4e7ec;
-  border-radius:20px;
-  padding:25px;
-  box-shadow:0 5px 20px rgba(0,0,0,.05);
-}
-
-h2{
-  margin-top:0;
+.panel{
+background:white;
+border:1px solid #e4e7ec;
+border-radius:18px;
+padding:22px;
+margin-bottom:25px
 }
 
 label{
-  display:block;
-  font-weight:700;
-  font-size:14px;
-  margin:18px 0 7px;
+display:block;
+font-weight:700;
+font-size:14px;
+margin:15px 0 6px
 }
 
-input,
-select,
-textarea{
-  width:100%;
-  padding:13px;
-  border:1px solid #d0d5dd;
-  border-radius:10px;
-  font-size:15px;
-  outline:none;
+input,select,textarea{
+width:100%;
+padding:12px;
+border:1px solid #d0d5dd;
+border-radius:10px;
+font-size:15px
 }
 
-textarea{
-  min-height:110px;
-  resize:vertical;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:#111827;
-}
+textarea{min-height:100px}
 
 button{
-  width:100%;
-  margin-top:22px;
-  padding:15px;
-  border:0;
-  border-radius:11px;
-  background:#111827;
-  color:white;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
+border:0;
+border-radius:9px;
+padding:11px 15px;
+font-weight:700;
+cursor:pointer
 }
 
-button:disabled{
-  opacity:.5;
+.primary{
+background:#111827;
+color:white;
+width:100%;
+margin-top:20px;
+padding:14px
 }
 
-.preview{
-  width:100%;
-  max-height:280px;
-  object-fit:cover;
-  border-radius:14px;
-  margin-top:12px;
-  display:none;
+.car{
+display:flex;
+gap:18px;
+padding:15px 0;
+border-bottom:1px solid #eaecf0;
+align-items:center
+}
+
+.car:last-child{border-bottom:0}
+
+.car img{
+width:130px;
+height:90px;
+object-fit:cover;
+border-radius:12px;
+background:#eee
+}
+
+.car-info{
+flex:1
+}
+
+.car-info h3{
+margin:0 0 6px
+}
+
+.car-info p{
+margin:4px 0;
+color:#667085;
+font-size:14px
+}
+
+.actions{
+display:flex;
+gap:8px;
+flex-wrap:wrap
+}
+
+.edit{
+background:#eef4ff;
+color:#175cd3
+}
+
+.sold{
+background:#ecfdf3;
+color:#027a48
+}
+
+.delete{
+background:#fef3f2;
+color:#b42318
 }
 
 .message{
-  margin-top:18px;
-  padding:14px;
-  border-radius:10px;
-  display:none;
-  font-weight:600;
+display:none;
+margin-top:15px;
+padding:12px;
+border-radius:9px;
+font-weight:600
 }
 
 .success{
-  background:#ecfdf3;
-  color:#027a48;
+background:#ecfdf3;
+color:#027a48
 }
 
 .error{
-  background:#fef3f2;
-  color:#b42318;
+background:#fef3f2;
+color:#b42318
 }
 
-.note{
-  background:#f2f4f7;
-  padding:13px;
-  border-radius:10px;
-  margin-top:18px;
-  font-size:13px;
-  color:#667085;
+.preview{
+width:100%;
+max-height:250px;
+object-fit:cover;
+border-radius:12px;
+margin-top:10px;
+display:none
 }
 
-.back{
-  display:inline-block;
-  margin-top:20px;
-  text-decoration:none;
-  color:#344054;
-  font-weight:700;
+@media(max-width:700px){
+
+.car{
+align-items:flex-start;
+flex-direction:column
+}
+
+.car img{
+width:100%;
+height:190px
+}
+
+.actions{
+width:100%
+}
+
+.actions button{
+flex:1
+}
 }
 </style>
 </head>
@@ -147,48 +177,50 @@ button:disabled{
 <body>
 
 <header>
-  <h1>Dealer Dashboard</h1>
-  <p>Add a new car to your live showroom</p>
+<h1>🚗 Dealer Dashboard</h1>
+<p>Manage your live car inventory</p>
 </header>
 
 <div class="container">
 
-<div class="form">
+<!-- ADD / EDIT -->
 
-<h2>🚗 Add New Car</h2>
+<div class="panel">
+
+<h2 id="formTitle">Add New Car</h2>
 
 <label>Car Name</label>
-<input id="name" placeholder="Example: Mahindra Scorpio N">
+<input id="name" placeholder="Mahindra Scorpio N">
 
 <label>Price</label>
-<input id="price" type="number" placeholder="Example: 1550000">
+<input id="price" type="number" placeholder="1550000">
 
 <label>Year</label>
-<input id="year" type="number" placeholder="Example: 2024">
+<input id="year" type="number" placeholder="2024">
 
 <label>Kilometres</label>
-<input id="km" type="number" placeholder="Example: 18000">
+<input id="km" type="number" placeholder="18000">
 
 <label>Fuel</label>
 <select id="fuel">
-  <option value="">Select fuel</option>
-  <option>Petrol</option>
-  <option>Diesel</option>
-  <option>CNG</option>
-  <option>Electric</option>
-  <option>Hybrid</option>
+<option value="">Select fuel</option>
+<option>Petrol</option>
+<option>Diesel</option>
+<option>CNG</option>
+<option>Electric</option>
+<option>Hybrid</option>
 </select>
 
 <label>Transmission</label>
 <select id="transmission">
-  <option value="">Select transmission</option>
-  <option>Manual</option>
-  <option>Automatic</option>
+<option value="">Select transmission</option>
+<option>Manual</option>
+<option>Automatic</option>
 </select>
 
 <label>Description</label>
 <textarea id="description"
-placeholder="Write something about the car..."></textarea>
+placeholder="Write car details..."></textarea>
 
 <label>Car Photo</label>
 <input id="image" type="file" accept="image/*">
@@ -197,35 +229,36 @@ placeholder="Write something about the car..."></textarea>
 
 <label>Status</label>
 <select id="status">
-  <option>Available</option>
-  <option>Sold</option>
-  <option>Reserved</option>
+<option>Available</option>
+<option>Sold</option>
+<option>Reserved</option>
 </select>
 
-<button id="publish">
-  Publish Car
+<button class="primary" id="saveButton">
+Publish Car
 </button>
 
 <div id="message" class="message"></div>
 
-<div class="note">
-  After publishing, the car will be added to your Cars database and can appear on the live showroom.
+</div>
+
+
+<!-- INVENTORY -->
+
+<div class="panel">
+
+<h2>My Inventory</h2>
+
+<div id="inventory">
+Loading cars...
 </div>
 
 </div>
-
-<a class="back" href="index.html">
-← Back to showroom
-</a>
 
 </div>
 
 
 <script>
-
-/* ==========================
-   SUPABASE
-   ========================== */
 
 const SUPABASE_URL =
 "https://lpdalirembwxxeurwhhh.supabase.co";
@@ -233,10 +266,20 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_lUBNsX4r6muXgVBqDDp-Vg_VSVIJnWA";
 
+const BUCKET =
+"Car images";
 
-/* ==========================
-   ELEMENTS
-   ========================== */
+let editingId = null;
+let currentCars = [];
+
+const inventory =
+document.getElementById("inventory");
+
+const saveButton =
+document.getElementById("saveButton");
+
+const message =
+document.getElementById("message");
 
 const imageInput =
 document.getElementById("image");
@@ -244,273 +287,94 @@ document.getElementById("image");
 const preview =
 document.getElementById("preview");
 
-const publish =
-document.getElementById("publish");
 
-const message =
-document.getElementById("message");
-
-
-/* ==========================
-   IMAGE PREVIEW
-   ========================== */
-
-imageInput.addEventListener("change",function(){
-
-const file = this.files[0];
-
-if(!file){
-  preview.style.display="none";
-  return;
-}
-
-preview.src =
-URL.createObjectURL(file);
-
-preview.style.display="block";
-
-});
-
-
-/* ==========================
-   MESSAGE
-   ========================== */
+/* MESSAGE */
 
 function showMessage(text,type){
 
 message.textContent=text;
-
-message.className =
-"message " + type;
-
+message.className="message "+type;
 message.style.display="block";
 
 }
 
 
-/* ==========================
-   PUBLISH CAR
-   ========================== */
+/* IMAGE PREVIEW */
 
-publish.addEventListener("click",async function(){
+imageInput.addEventListener("change",function(){
+
+const file=this.files[0];
+
+if(!file){
+
+preview.style.display="none";
+return;
+
+}
+
+preview.src=URL.createObjectURL(file);
+preview.style.display="block";
+
+});
+
+
+/* LOAD INVENTORY */
+
+async function loadInventory(){
 
 try{
 
-publish.disabled=true;
-
-showMessage(
-"Uploading car...",
-"success"
-);
-
-
-/* GET FORM DATA */
-
-const name =
-document.getElementById("name").value.trim();
-
-const price =
-document.getElementById("price").value;
-
-const year =
-document.getElementById("year").value;
-
-const km =
-document.getElementById("km").value;
-
-const fuel =
-document.getElementById("fuel").value;
-
-const transmission =
-document.getElementById("transmission").value;
-
-const description =
-document.getElementById("description").value.trim();
-
-const status =
-document.getElementById("status").value;
-
-const file =
-imageInput.files[0];
-
-
-/* VALIDATION */
-
-if(!name || !price || !year || !km || !fuel || !transmission || !file){
-
-throw new Error(
-"Please fill all required fields and choose a photo."
-);
-
-}
-
-
-/* ==========================
-   UPLOAD IMAGE
-   ========================== */
-
-const fileName =
-Date.now() + "-" +
-file.name.replace(/[^a-zA-Z0-9.-]/g,"-");
-
-
-const uploadUrl =
-SUPABASE_URL +
-"/storage/v1/object/Car%20images/" +
-encodeURIComponent(fileName);
-
-
-const uploadResponse =
-await fetch(uploadUrl,{
-
-method:"POST",
-
-headers:{
-"Authorization":
-"Bearer " + SUPABASE_KEY,
-
-"apikey":
-SUPABASE_KEY,
-
-"Content-Type":
-file.type
-},
-
-body:file
-
-});
-
-
-if(!uploadResponse.ok){
-
-const error =
-await uploadResponse.text();
-
-throw new Error(
-"Image upload failed: " + error
-);
-
-}
-
-
-/* ==========================
-   IMAGE URL
-   ========================== */
-
-const imageUrl =
-SUPABASE_URL +
-"/storage/v1/object/public/Car%20images/" +
-encodeURIComponent(fileName);
-
-
-/* ==========================
-   SAVE CAR
-   ========================== */
-
-const carResponse =
-await fetch(
-SUPABASE_URL +
-"/rest/v1/Cars",
+const response=await fetch(
+SUPABASE_URL+"/rest/v1/Cars?select=*&order=Year.desc",
 {
-
-method:"POST",
-
 headers:{
-
-"apikey":
-SUPABASE_KEY,
-
-"Authorization":
-"Bearer " + SUPABASE_KEY,
-
-"Content-Type":
-"application/json",
-
-"Prefer":
-"return=minimal"
-
-},
-
-body:JSON.stringify({
-
-Name:name,
-
-Price:Number(price),
-
-Year:Number(year),
-
-Km:Number(km),
-
-Fuel:fuel,
-
-Transmission:transmission,
-
-Description:description,
-
-Image_url:imageUrl,
-
-Status:status
-
-})
-
-});
-
-
-if(!carResponse.ok){
-
-const error =
-await carResponse.text();
-
-throw new Error(
-"Car save failed: " + error
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+SUPABASE_KEY
+}
+}
 );
+
+if(!response.ok){
+
+throw new Error(await response.text());
 
 }
 
+currentCars=await response.json();
 
-/* ==========================
-   SUCCESS
-   ========================== */
-
-showMessage(
-"🎉 Car published successfully!",
-"success"
-);
-
-
-/* CLEAR FORM */
-
-document.getElementById("name").value="";
-document.getElementById("price").value="";
-document.getElementById("year").value="";
-document.getElementById("km").value="";
-document.getElementById("fuel").value="";
-document.getElementById("transmission").value="";
-document.getElementById("description").value="";
-document.getElementById("status").value="Available";
-
-imageInput.value="";
-preview.style.display="none";
-
+renderInventory();
 
 }catch(error){
 
 console.error(error);
 
-showMessage(
-error.message,
-"error"
-);
-
-}finally{
-
-publish.disabled=false;
+inventory.innerHTML=
+"<p>Could not load inventory.</p>";
 
 }
 
-});
+}
 
-</script>
 
-</body>
-</html>
+/* RENDER */
+
+function renderInventory(){
+
+if(currentCars.length===0){
+
+inventory.innerHTML=
+"<p>No cars added yet.</p>";
+
+return;
+
+}
+
+inventory.innerHTML=currentCars.map(function(car){
+
+return `
+
+<div class="car">
+
+<img
+src="${car.Image_url || ''}"
+onerror="this.style.display='
