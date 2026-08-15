@@ -7,43 +7,235 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f5f7fa;font-family:Arial,sans-serif;color:#101828}
-header{background:#111827;color:#fff;padding:22px}
-header h1{margin:0;font-size:24px}
-header p{margin:6px 0 0;color:#98a2b3}
-.container{max-width:900px;width:92%;margin:25px auto}
-.panel{background:#fff;border:1px solid #e4e7ec;border-radius:18px;padding:22px;margin-bottom:22px}
-h2{margin-top:0}
-label{display:block;font-weight:700;font-size:14px;margin:15px 0 6px}
-input,select,textarea{width:100%;padding:13px;border:1px solid #d0d5dd;border-radius:10px;font-size:15px}
-textarea{min-height:100px}
-button{border:0;border-radius:10px;padding:12px 15px;font-weight:700}
-.primary{width:100%;margin-top:20px;background:#111827;color:#fff;padding:15px;font-size:16px}
-.message{display:none;margin-top:15px;padding:13px;border-radius:10px;font-weight:600}
-.success{background:#ecfdf3;color:#027a48}
-.error{background:#fef3f2;color:#b42318}
-.car{border-bottom:1px solid #eaecf0;padding:18px 0}
-.car:last-child{border:0}
-.car img{width:100%;height:190px;object-fit:cover;border-radius:12px}
-.car h3{margin:12px 0 5px}
-.car p{margin:5px 0;color:#667085}
-.actions{display:flex;gap:8px;margin-top:12px}
-.edit{background:#eef4ff;color:#175cd3}
-.sold{background:#ecfdf3;color:#027a48}
-.delete{background:#fef3f2;color:#b42318}
-.preview{width:100%;max-height:250px;object-fit:cover;border-radius:12px;margin-top:10px;display:none}
-.empty{text-align:center;padding:30px;color:#667085}
+
+body{
+margin:0;
+background:#f5f7fa;
+font-family:Arial,sans-serif;
+color:#101828
+}
+
+header{
+background:#111827;
+color:white;
+padding:20px;
+}
+
+.header-row{
+max-width:900px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+}
+
+header h1{
+margin:0;
+font-size:23px;
+}
+
+header p{
+margin:5px 0 0;
+color:#98a2b3;
+}
+
+.logout{
+background:white;
+color:#111827;
+border:0;
+padding:10px 14px;
+border-radius:9px;
+font-weight:700;
+}
+
+.container{
+max-width:900px;
+width:92%;
+margin:25px auto;
+}
+
+.panel{
+background:white;
+border:1px solid #e4e7ec;
+border-radius:18px;
+padding:22px;
+margin-bottom:22px;
+}
+
+h2{
+margin-top:0;
+}
+
+label{
+display:block;
+font-weight:700;
+font-size:14px;
+margin:15px 0 6px;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:13px;
+border:1px solid #d0d5dd;
+border-radius:10px;
+font-size:15px;
+}
+
+textarea{
+min-height:100px;
+}
+
+.primary{
+width:100%;
+margin-top:20px;
+background:#111827;
+color:white;
+border:0;
+padding:15px;
+border-radius:10px;
+font-size:16px;
+font-weight:800;
+}
+
+.primary:disabled{
+opacity:.6;
+}
+
+.message{
+display:none;
+margin-top:15px;
+padding:13px;
+border-radius:10px;
+font-weight:600;
+}
+
+.success{
+background:#ecfdf3;
+color:#027a48;
+}
+
+.error{
+background:#fef3f2;
+color:#b42318;
+}
+
+.car{
+border-bottom:1px solid #eaecf0;
+padding:18px 0;
+}
+
+.car:last-child{
+border-bottom:0;
+}
+
+.car img{
+width:100%;
+height:190px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.car h3{
+margin:12px 0 5px;
+}
+
+.car p{
+margin:5px 0;
+color:#667085;
+}
+
+.actions{
+display:flex;
+gap:8px;
+margin-top:12px;
+}
+
+.actions button{
+border:0;
+padding:11px 14px;
+border-radius:9px;
+font-weight:700;
+}
+
+.edit{
+background:#eef4ff;
+color:#175cd3;
+}
+
+.sold{
+background:#ecfdf3;
+color:#027a48;
+}
+
+.delete{
+background:#fef3f2;
+color:#b42318;
+}
+
+.preview{
+width:100%;
+max-height:250px;
+object-fit:cover;
+border-radius:12px;
+margin-top:10px;
+display:none;
+}
+
+.empty{
+text-align:center;
+padding:30px;
+color:#667085;
+}
+
+@media(max-width:600px){
+
+.header-row{
+align-items:flex-start;
+}
+
+header h1{
+font-size:20px;
+}
+
+.actions{
+flex-wrap:wrap;
+}
+
+.actions button{
+flex:1;
+}
+
+}
 </style>
 </head>
 
 <body>
 
 <header>
+
+<div class="header-row">
+
+<div>
 <h1>🚗 Dealer Dashboard</h1>
 <p>Manage your live car inventory</p>
+</div>
+
+<button class="logout" onclick="logout()">
+Logout
+</button>
+
+</div>
+
 </header>
 
+
 <div class="container">
+
+
+<!-- ADD / EDIT CAR -->
 
 <div class="panel">
 
@@ -62,42 +254,79 @@ button{border:0;border-radius:10px;padding:12px 15px;font-weight:700}
 <input id="km" type="number" placeholder="18000">
 
 <label>Fuel</label>
+
 <select id="fuel">
+
 <option value="">Select fuel</option>
 <option>Petrol</option>
 <option>Diesel</option>
 <option>CNG</option>
 <option>Electric</option>
 <option>Hybrid</option>
+
 </select>
 
+
 <label>Transmission</label>
+
 <select id="transmission">
+
 <option value="">Select transmission</option>
 <option>Manual</option>
 <option>Automatic</option>
+
 </select>
 
+
 <label>Description</label>
-<textarea id="description" placeholder="Write car details"></textarea>
+
+<textarea
+id="description"
+placeholder="Write car details">
+</textarea>
+
 
 <label>Car Photo</label>
-<input id="image" type="file" accept="image/*">
-<img id="preview" class="preview">
+
+<input
+id="image"
+type="file"
+accept="image/*">
+
+<img
+id="preview"
+class="preview">
+
 
 <label>Status</label>
+
 <select id="carStatus">
+
 <option>Available</option>
 <option>Sold</option>
 <option>Reserved</option>
+
 </select>
 
-<button class="primary" id="saveButton">Publish Car</button>
 
-<div id="message" class="message"></div>
+<button
+class="primary"
+id="saveButton">
+
+Publish Car
+
+</button>
+
+
+<div
+id="message"
+class="message">
+</div>
 
 </div>
 
+
+<!-- INVENTORY -->
 
 <div class="panel">
 
@@ -114,11 +343,35 @@ Loading cars...
 
 <script>
 
+
+/* =================================
+   LOGIN PROTECTION
+================================= */
+
+if(
+localStorage.getItem("dealer_logged_in")
+!=="true"
+){
+
+window.location.href="login.html";
+
+}
+
+
+/* =================================
+   SUPABASE
+================================= */
+
 const SUPABASE_URL =
 "https://lpdalirembwxxeurwhhh.supabase.co";
 
 const SUPABASE_KEY =
 "sb_publishable_lUBNsX4r6muXgVBqDDp-Vg_VSVIJnWA";
+
+
+/* =================================
+   ELEMENTS
+================================= */
 
 const inventory =
 document.getElementById("inventory");
@@ -135,79 +388,141 @@ document.getElementById("image");
 const preview =
 document.getElementById("preview");
 
+
 let cars=[];
 let editingId=null;
 
 
-/* SHOW MESSAGE */
+/* =================================
+   LOGOUT
+================================= */
+
+function logout(){
+
+localStorage.removeItem(
+"dealer_logged_in"
+);
+
+localStorage.removeItem(
+"dealer_access_token"
+);
+
+localStorage.removeItem(
+"dealer_refresh_token"
+);
+
+window.location.href="login.html";
+
+}
+
+
+/* =================================
+   MESSAGE
+================================= */
 
 function showMessage(text,type){
 
 message.textContent=text;
-message.className="message "+type;
+
+message.className=
+"message "+type;
+
 message.style.display="block";
 
 }
 
 
-/* IMAGE PREVIEW */
+/* =================================
+   IMAGE PREVIEW
+================================= */
 
-imageInput.addEventListener("change",function(){
+imageInput.addEventListener(
+"change",
+function(){
 
 const file=imageInput.files[0];
 
 if(!file){
+
 preview.style.display="none";
+
 return;
+
 }
 
-preview.src=URL.createObjectURL(file);
+preview.src=
+URL.createObjectURL(file);
+
 preview.style.display="block";
 
-});
+}
+);
 
 
-/* LOAD CARS */
+/* =================================
+   LOAD CARS
+================================= */
 
 async function loadCars(){
 
-inventory.innerHTML="<div class='empty'>Loading cars...</div>";
+inventory.innerHTML=
+"<div class='empty'>Loading cars...</div>";
 
 try{
 
 const response=await fetch(
-SUPABASE_URL+"/rest/v1/Cars?select=*",
+
+SUPABASE_URL+
+"/rest/v1/Cars?select=*",
+
 {
+
 method:"GET",
+
 headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY,
-"Accept":"application/json"
+
+"apikey":
+SUPABASE_KEY,
+
+"Authorization":
+"Bearer "+SUPABASE_KEY,
+
+"Accept":
+"application/json"
+
 }
-}
-);
+
+});
+
 
 if(!response.ok){
 
-const errorText=await response.text();
-
 throw new Error(
-"Database error: "+errorText
+await response.text()
 );
 
 }
+
 
 cars=await response.json();
 
 renderCars();
+
 
 }catch(error){
 
 console.error(error);
 
 inventory.innerHTML=
-"<div class='empty'><b>Could not load cars.</b><br><br>"+
-error.message+
+
+"<div class='empty'>" +
+
+"<b>Could not load cars.</b>" +
+
+"<br><br>" +
+
+error.message +
+
 "</div>";
 
 }
@@ -215,7 +530,9 @@ error.message+
 }
 
 
-/* SHOW CARS */
+/* =================================
+   DISPLAY CARS
+================================= */
 
 function renderCars(){
 
@@ -228,7 +545,10 @@ return;
 
 }
 
-inventory.innerHTML=cars.map(function(car){
+
+inventory.innerHTML=
+
+cars.map(function(car){
 
 return `
 
@@ -239,15 +559,21 @@ src="${car.Image_url || ''}"
 onerror="this.style.display='none'"
 >
 
-<h3>${car.Name || "Unnamed Car"}</h3>
+<h3>
+${car.Name || "Unnamed Car"}
+</h3>
 
 <p>
-₹${Number(car.Price || 0).toLocaleString("en-IN")}
+₹${Number(
+car.Price || 0
+).toLocaleString("en-IN")}
 </p>
 
 <p>
 ${car.Year || ""} ·
-${Number(car.Km || 0).toLocaleString("en-IN")} km
+${Number(
+car.Km || 0
+).toLocaleString("en-IN")} km
 </p>
 
 <p>
@@ -256,7 +582,10 @@ ${car.Transmission || ""}
 </p>
 
 <p>
-Status: <b>${car.Status || "Available"}</b>
+Status:
+<b>
+${car.Status || "Available"}
+</b>
 </p>
 
 <div class="actions">
@@ -290,100 +619,181 @@ onclick="deleteCar(${car.id})">
 }
 
 
-/* EDIT */
+/* =================================
+   EDIT CAR
+================================= */
 
 function startEdit(id){
 
-const car=cars.find(function(item){
+const car=
+cars.find(function(item){
 
-return String(item.id)===String(id);
+return String(item.id)
+===
+String(id);
 
 });
+
 
 if(!car)return;
 
+
 editingId=id;
 
-document.getElementById("formTitle").textContent=
+
+document.getElementById(
+"formTitle"
+).textContent=
 "Edit Car";
 
-document.getElementById("name").value=
+
+document.getElementById(
+"name"
+).value=
 car.Name || "";
 
-document.getElementById("price").value=
+
+document.getElementById(
+"price"
+).value=
 car.Price || "";
 
-document.getElementById("year").value=
+
+document.getElementById(
+"year"
+).value=
 car.Year || "";
 
-document.getElementById("km").value=
+
+document.getElementById(
+"km"
+).value=
 car.Km || "";
 
-document.getElementById("fuel").value=
+
+document.getElementById(
+"fuel"
+).value=
 car.Fuel || "";
 
-document.getElementById("transmission").value=
+
+document.getElementById(
+"transmission"
+).value=
 car.Transmission || "";
 
-document.getElementById("description").value=
+
+document.getElementById(
+"description"
+).value=
 car.Description || "";
 
-document.getElementById("carStatus").value=
+
+document.getElementById(
+"carStatus"
+).value=
 car.Status || "Available";
+
 
 if(car.Image_url){
 
-preview.src=car.Image_url;
-preview.style.display="block";
+preview.src=
+car.Image_url;
+
+preview.style.display=
+"block";
 
 }
 
-saveButton.textContent="Update Car";
+
+saveButton.textContent=
+"Update Car";
+
 
 window.scrollTo({
+
 top:0,
+
 behavior:"smooth"
+
 });
 
 }
 
 
-/* SAVE CAR */
+/* =================================
+   SAVE / UPDATE
+================================= */
 
-saveButton.addEventListener("click",async function(){
+saveButton.addEventListener(
+"click",
+async function(){
 
 try{
 
 saveButton.disabled=true;
 
+
 const name=
-document.getElementById("name").value.trim();
+document.getElementById(
+"name"
+).value.trim();
+
 
 const price=
-document.getElementById("price").value;
+document.getElementById(
+"price"
+).value;
+
 
 const year=
-document.getElementById("year").value;
+document.getElementById(
+"year"
+).value;
+
 
 const km=
-document.getElementById("km").value;
+document.getElementById(
+"km"
+).value;
+
 
 const fuel=
-document.getElementById("fuel").value;
+document.getElementById(
+"fuel"
+).value;
+
 
 const transmission=
-document.getElementById("transmission").value;
+document.getElementById(
+"transmission"
+).value;
+
 
 const description=
-document.getElementById("description").value.trim();
+document.getElementById(
+"description"
+).value.trim();
+
 
 const status=
-document.getElementById("carStatus").value;
+document.getElementById(
+"carStatus"
+).value;
 
-const file=imageInput.files[0];
+
+const file=
+imageInput.files[0];
 
 
-if(!name||!price||!year||!km||!fuel||!transmission){
+if(
+!name ||
+!price ||
+!year ||
+!km ||
+!fuel ||
+!transmission
+){
 
 throw new Error(
 "Please fill all required fields."
@@ -392,9 +802,12 @@ throw new Error(
 }
 
 
-/* UPLOAD IMAGE ONLY IF NEW IMAGE SELECTED */
+/* =================================
+   UPLOAD IMAGE
+================================= */
 
 let imageUrl=null;
+
 
 if(file){
 
@@ -403,27 +816,52 @@ showMessage(
 "success"
 );
 
+
 const fileName=
-Date.now()+"-"+file.name.replace(
+
+Date.now()+
+"-"+
+file.name.replace(
 /[^a-zA-Z0-9.-]/g,
 "-"
 );
 
+
 const uploadUrl=
+
 SUPABASE_URL+
 "/storage/v1/object/Car%20images/"+
-encodeURIComponent(fileName);
+encodeURIComponent(
+fileName
+);
+
 
 const uploadResponse=
-await fetch(uploadUrl,{
+
+await fetch(
+uploadUrl,
+{
+
 method:"POST",
+
 headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY,
-"Content-Type":file.type
+
+"apikey":
+SUPABASE_KEY,
+
+"Authorization":
+"Bearer "+SUPABASE_KEY,
+
+"Content-Type":
+file.type
+
 },
+
 body:file
-});
+
+}
+);
+
 
 if(!uploadResponse.ok){
 
@@ -434,52 +872,88 @@ await uploadResponse.text()
 
 }
 
+
 imageUrl=
+
 SUPABASE_URL+
 "/storage/v1/object/public/Car%20images/"+
-encodeURIComponent(fileName);
+encodeURIComponent(
+fileName
+);
 
 }
 
 
-/* CAR DATA */
+/* =================================
+   CAR DATA
+================================= */
 
 const data={
 
 Name:name,
+
 Price:Number(price),
+
 Year:Number(year),
+
 Km:Number(km),
+
 Fuel:fuel,
+
 Transmission:transmission,
+
 Description:description,
+
 Status:status
 
 };
 
 
-/* UPDATE */
+/* =================================
+   UPDATE
+================================= */
 
 if(editingId){
 
 if(imageUrl){
-data.Image_url=imageUrl;
+
+data.Image_url=
+imageUrl;
+
 }
 
+
 const response=
+
 await fetch(
+
 SUPABASE_URL+
-"/rest/v1/Cars?id=eq."+editingId,
+"/rest/v1/Cars?id=eq."+
+editingId,
+
 {
+
 method:"PATCH",
+
 headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY,
-"Content-Type":"application/json"
+
+"apikey":
+SUPABASE_KEY,
+
+"Authorization":
+"Bearer "+SUPABASE_KEY,
+
+"Content-Type":
+"application/json"
+
 },
-body:JSON.stringify(data)
+
+body:
+JSON.stringify(data)
+
 }
 );
+
 
 if(!response.ok){
 
@@ -490,6 +964,7 @@ await response.text()
 
 }
 
+
 showMessage(
 "✅ Car updated successfully!",
 "success"
@@ -498,7 +973,9 @@ showMessage(
 }
 
 
-/* NEW CAR */
+/* =================================
+   NEW CAR
+================================= */
 
 else{
 
@@ -510,21 +987,42 @@ throw new Error(
 
 }
 
-data.Image_url=imageUrl;
+
+data.Image_url=
+imageUrl;
+
 
 const response=
+
 await fetch(
-SUPABASE_URL+"/rest/v1/Cars",
+
+SUPABASE_URL+
+"/rest/v1/Cars",
+
 {
+
 method:"POST",
+
 headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY,
-"Content-Type":"application/json"
+
+"apikey":
+SUPABASE_KEY,
+
+"Authorization":
+"Bearer "+SUPABASE_KEY,
+
+"Content-Type":
+"application/json"
+
 },
-body:JSON.stringify(data)
+
+body:
+JSON.stringify(data)
+
 }
+
 );
+
 
 if(!response.ok){
 
@@ -535,6 +1033,7 @@ await response.text()
 
 }
 
+
 showMessage(
 "🎉 Car published successfully!",
 "success"
@@ -543,28 +1042,72 @@ showMessage(
 }
 
 
-/* RESET */
+/* =================================
+   RESET
+================================= */
 
 editingId=null;
 
-document.getElementById("formTitle").textContent=
+
+document.getElementById(
+"formTitle"
+).textContent=
 "Add New Car";
 
-saveButton.textContent="Publish Car";
 
-document.getElementById("name").value="";
-document.getElementById("price").value="";
-document.getElementById("year").value="";
-document.getElementById("km").value="";
-document.getElementById("fuel").value="";
-document.getElementById("transmission").value="";
-document.getElementById("description").value="";
-document.getElementById("carStatus").value="Available";
+saveButton.textContent=
+"Publish Car";
+
+
+document.getElementById(
+"name"
+).value="";
+
+
+document.getElementById(
+"price"
+).value="";
+
+
+document.getElementById(
+"year"
+).value="";
+
+
+document.getElementById(
+"km"
+).value="";
+
+
+document.getElementById(
+"fuel"
+).value="";
+
+
+document.getElementById(
+"transmission"
+).value="";
+
+
+document.getElementById(
+"description"
+).value="";
+
+
+document.getElementById(
+"carStatus"
+).value=
+"Available";
+
 
 imageInput.value="";
-preview.style.display="none";
+
+preview.style.display=
+"none";
+
 
 await loadCars();
+
 
 }catch(error){
 
@@ -575,39 +1118,66 @@ error.message,
 "error"
 );
 
+
 }finally{
 
 saveButton.disabled=false;
 
 }
 
-});
+}
+);
 
 
-/* MARK SOLD */
+/* =================================
+   MARK SOLD
+================================= */
 
 async function markSold(id){
 
-if(!confirm("Mark this car as SOLD?"))return;
+if(
+!confirm(
+"Mark this car as SOLD?"
+)
+)return;
+
 
 try{
 
 const response=
+
 await fetch(
+
 SUPABASE_URL+
 "/rest/v1/Cars?id=eq."+id,
+
 {
+
 method:"PATCH",
+
 headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY,
-"Content-Type":"application/json"
+
+"apikey":
+SUPABASE_KEY,
+
+"Authorization":
+"Bearer "+SUPABASE_KEY,
+
+"Content-Type":
+"application/json"
+
 },
+
 body:JSON.stringify({
+
 Status:"Sold"
+
 })
+
 }
+
 );
+
 
 if(!response.ok){
 
@@ -616,13 +1186,16 @@ await response.text()
 );
 
 }
+
 
 showMessage(
 "Car marked as SOLD.",
 "success"
 );
 
+
 await loadCars();
+
 
 }catch(error){
 
@@ -636,28 +1209,46 @@ showMessage(
 }
 
 
-/* DELETE */
+/* =================================
+   DELETE
+================================= */
 
 async function deleteCar(id){
 
-if(!confirm(
+if(
+!confirm(
 "Are you sure you want to delete this car?"
-))return;
+)
+)return;
+
 
 try{
 
 const response=
+
 await fetch(
+
 SUPABASE_URL+
 "/rest/v1/Cars?id=eq."+id,
+
 {
+
 method:"DELETE",
+
 headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY
+
+"apikey":
+SUPABASE_KEY,
+
+"Authorization":
+"Bearer "+SUPABASE_KEY
+
 }
+
 }
+
 );
+
 
 if(!response.ok){
 
@@ -667,12 +1258,15 @@ await response.text()
 
 }
 
+
 showMessage(
 "Car deleted successfully.",
 "success"
 );
 
+
 await loadCars();
+
 
 }catch(error){
 
@@ -686,7 +1280,9 @@ showMessage(
 }
 
 
-/* START */
+/* =================================
+   START
+================================= */
 
 loadCars();
 
