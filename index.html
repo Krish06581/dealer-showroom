@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Premium Motors | Quality Used Cars</title>
-
-<meta name="description"
-content="Browse our latest collection of quality pre-owned cars.">
 
 <style>
 
@@ -22,17 +20,6 @@ font-family:Arial,Helvetica,sans-serif;
 background:#f6f7f9;
 color:#111827;
 }
-
-button,
-input,
-select{
-font-family:inherit;
-}
-
-
-/* =========================
-   NAVBAR
-========================= */
 
 .navbar{
 height:72px;
@@ -54,7 +41,6 @@ justify-content:space-between;
 .logo{
 font-size:21px;
 font-weight:900;
-letter-spacing:-.5px;
 }
 
 .logo span{
@@ -64,27 +50,18 @@ color:#b08d57;
 .nav-btn{
 background:#b08d57;
 color:white;
-border:0;
 padding:11px 18px;
 border-radius:8px;
 font-weight:700;
+text-decoration:none;
 }
-
-
-/* =========================
-   HERO
-========================= */
 
 .hero{
 background:
 linear-gradient(
-rgba(7,10,17,.80),
-rgba(7,10,17,.90)
-),
-url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=85");
-
-background-size:cover;
-background-position:center;
+rgba(7,10,17,.96),
+rgba(7,10,17,.96)
+);
 
 min-height:430px;
 
@@ -141,23 +118,10 @@ font-weight:800;
 text-decoration:none;
 }
 
-
-/* =========================
-   INVENTORY
-========================= */
-
 .inventory-section{
 width:92%;
 max-width:1200px;
 margin:55px auto;
-}
-
-.section-top{
-display:flex;
-justify-content:space-between;
-align-items:end;
-gap:20px;
-margin-bottom:25px;
 }
 
 .section-title{
@@ -168,12 +132,8 @@ font-weight:900;
 .section-subtitle{
 color:#667085;
 margin-top:7px;
+margin-bottom:25px;
 }
-
-
-/* =========================
-   FILTERS
-========================= */
 
 .filters{
 display:flex;
@@ -201,22 +161,12 @@ background:white;
 min-width:150px;
 }
 
-
-/* =========================
-   GRID
-========================= */
-
 .grid{
 display:grid;
 grid-template-columns:
 repeat(3,minmax(0,1fr));
 gap:22px;
 }
-
-
-/* =========================
-   CAR CARD
-========================= */
 
 .car-card{
 background:white;
@@ -234,12 +184,94 @@ box-shadow:
 0 15px 35px rgba(16,24,40,.10);
 }
 
-.car-image{
-height:220px;
+
+/* =========================
+   IMAGE SLIDER
+========================= */
+
+.slider{
+height:240px;
+position:relative;
+overflow:hidden;
+background:#111827;
+}
+
+.slider-track{
+height:100%;
+display:flex;
+transition:
+transform .55s ease;
+}
+
+.slider-track img{
+min-width:100%;
 width:100%;
+height:100%;
 object-fit:cover;
 display:block;
 }
+
+.slider-arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+
+width:38px;
+height:38px;
+
+border:0;
+border-radius:50%;
+
+background:rgba(0,0,0,.55);
+color:white;
+
+font-size:20px;
+font-weight:bold;
+
+cursor:pointer;
+
+z-index:5;
+}
+
+.slider-arrow.left{
+left:10px;
+}
+
+.slider-arrow.right{
+right:10px;
+}
+
+.slider-dots{
+position:absolute;
+bottom:10px;
+left:0;
+right:0;
+
+display:flex;
+justify-content:center;
+gap:5px;
+
+z-index:5;
+}
+
+.dot{
+width:7px;
+height:7px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.5);
+}
+
+.dot.active{
+background:white;
+transform:scale(1.3);
+}
+
+
+/* =========================
+   CARD CONTENT
+========================= */
 
 .car-content{
 padding:18px;
@@ -254,7 +286,6 @@ margin-bottom:8px;
 .price{
 font-size:22px;
 font-weight:900;
-color:#111827;
 }
 
 .details{
@@ -292,15 +323,6 @@ border-radius:9px;
 font-weight:800;
 }
 
-.whatsapp:hover{
-background:#1d2939;
-}
-
-
-/* =========================
-   EMPTY / LOADING
-========================= */
-
 .loading,
 .empty{
 grid-column:1/-1;
@@ -325,11 +347,6 @@ transform:rotate(360deg);
 }
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
 footer{
 background:#0b0f19;
 color:#98a2b3;
@@ -345,11 +362,6 @@ font-weight:900;
 margin-bottom:8px;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
 @media(max-width:900px){
 
 .grid{
@@ -360,11 +372,6 @@ repeat(2,minmax(0,1fr));
 }
 
 @media(max-width:600px){
-
-.nav-btn{
-padding:9px 13px;
-font-size:13px;
-}
 
 .hero{
 min-height:500px;
@@ -378,20 +385,12 @@ font-size:43px;
 font-size:16px;
 }
 
-.section-title{
-font-size:27px;
-}
-
 .grid{
 grid-template-columns:1fr;
 }
 
-.car-image{
+.slider{
 height:230px;
-}
-
-.section-top{
-display:block;
 }
 
 .filters{
@@ -413,10 +412,6 @@ margin-bottom:9px;
 <body>
 
 
-<!-- =========================
-     NAVBAR
-========================= -->
-
 <header class="navbar">
 
 <div class="nav">
@@ -435,10 +430,6 @@ View Cars
 
 </header>
 
-
-<!-- =========================
-     HERO
-========================= -->
 
 <section class="hero">
 
@@ -469,17 +460,9 @@ Explore Inventory →
 </section>
 
 
-<!-- =========================
-     INVENTORY
-========================= -->
-
 <section
 class="inventory-section"
 id="inventory">
-
-<div class="section-top">
-
-<div>
 
 <div class="section-title">
 Our Cars
@@ -489,12 +472,6 @@ Our Cars
 Latest vehicles available in our showroom
 </div>
 
-</div>
-
-</div>
-
-
-<!-- FILTERS -->
 
 <div class="filters">
 
@@ -512,25 +489,11 @@ class="filter">
 All Fuel Types
 </option>
 
-<option value="Petrol">
-Petrol
-</option>
-
-<option value="Diesel">
-Diesel
-</option>
-
-<option value="CNG">
-CNG
-</option>
-
-<option value="Electric">
-Electric
-</option>
-
-<option value="Hybrid">
-Hybrid
-</option>
+<option>Petrol</option>
+<option>Diesel</option>
+<option>CNG</option>
+<option>Electric</option>
+<option>Hybrid</option>
 
 </select>
 
@@ -560,8 +523,6 @@ Year: Newest
 </div>
 
 
-<!-- CARS -->
-
 <div
 id="cars"
 class="grid">
@@ -578,10 +539,6 @@ Loading cars...
 
 </section>
 
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
 
@@ -604,11 +561,6 @@ Quality cars. Honest deals.
 
 <script>
 
-
-/* =========================
-   SUPABASE
-========================= */
-
 const SUPABASE_URL =
 "https://lpdalirembwxxeurwhhh.supabase.co";
 
@@ -618,10 +570,6 @@ const SUPABASE_KEY =
 
 let allCars=[];
 
-
-/* =========================
-   ELEMENTS
-========================= */
 
 const carsContainer=
 document.getElementById("cars");
@@ -636,10 +584,6 @@ const sort=
 document.getElementById("sort");
 
 
-/* =========================
-   LOAD CARS
-========================= */
-
 async function loadCars(){
 
 try{
@@ -651,17 +595,11 @@ SUPABASE_URL+
 "/rest/v1/Cars?select=*",
 
 {
-
 headers:{
-
-"apikey":
-SUPABASE_KEY,
-
+"apikey":SUPABASE_KEY,
 "Authorization":
 "Bearer "+SUPABASE_KEY
-
 }
-
 }
 
 );
@@ -680,16 +618,11 @@ const cars=
 await response.json();
 
 
-/*
-Only show cars that are
-NOT sold.
-*/
-
 allCars=
 cars.filter(
 car=>
 String(
-car.Status || "Available"
+car.Status||"Available"
 ).toLowerCase()
 !=="sold"
 );
@@ -700,23 +633,47 @@ renderCars();
 
 }catch(error){
 
-console.error(error);
-
 carsContainer.innerHTML=
-
 `
 <div class="empty">
-
 ❌ Unable to load inventory.
-
 <br><br>
-
-${error.message}
-
+${escapeHtml(error.message)}
 </div>
 `;
 
 }
+
+}
+
+
+/* =========================
+   GET MULTIPLE IMAGES
+========================= */
+
+function getImages(car){
+
+if(!car.Image_url){
+return [];
+}
+
+try{
+
+const parsed=
+JSON.parse(car.Image_url);
+
+if(Array.isArray(parsed)){
+return parsed;
+}
+
+}catch(e){}
+
+
+/* Backward compatibility
+   for old single-image cars
+*/
+
+return [car.Image_url];
 
 }
 
@@ -727,15 +684,12 @@ ${error.message}
 
 function renderCars(){
 
-let cars=
-[...allCars];
-
+let cars=[...allCars];
 
 const query=
 search.value
 .toLowerCase()
 .trim();
-
 
 const fuel=
 fuelFilter.value;
@@ -745,11 +699,9 @@ if(query){
 
 cars=cars.filter(
 car=>
-
 String(car.Name||"")
 .toLowerCase()
 .includes(query)
-
 );
 
 }
@@ -764,8 +716,6 @@ car.Fuel===fuel
 
 }
 
-
-/* SORT */
 
 if(sort.value==="priceLow"){
 
@@ -803,9 +753,7 @@ if(cars.length===0){
 carsContainer.innerHTML=
 `
 <div class="empty">
-
 No cars found matching your search.
-
 </div>
 `;
 
@@ -816,59 +764,152 @@ return;
 
 carsContainer.innerHTML=
 cars.map(
-car=>createCard(car)
+(car,index)=>
+createCard(car,index)
 ).join("");
+
+
+/* Start sliders */
+
+cars.forEach(
+(car,index)=>
+startSlider(index)
+);
 
 }
 
 
 /* =========================
-   CARD
+   CREATE CARD
 ========================= */
 
-function createCard(car){
+function createCard(car,index){
 
 const name=
 escapeHtml(
-car.Name || "Premium Car"
+car.Name||"Premium Car"
 );
 
 const description=
 escapeHtml(
-car.Description || ""
+car.Description||""
 );
 
-const image=
-car.Image_url || "";
+const images=
+getImages(car);
 
 const price=
 Number(
-car.Price || 0
-).toLocaleString(
-"en-IN"
-);
+car.Price||0
+).toLocaleString("en-IN");
 
 
 const message=
 encodeURIComponent(
 "Hi, I'm interested in the "+
-(car.Name || "car")+
+(car.Name||"car")+
 " listed on your website."
 );
+
+
+/* Image HTML */
+
+let imageHTML="";
+
+
+if(images.length===0){
+
+imageHTML=
+`
+<div class="slider">
+
+<div class="slider-track">
+
+<img
+src="https://placehold.co/900x600?text=Car+Image"
+alt="${name}"
+>
+
+</div>
+
+</div>
+`;
+
+}else{
+
+imageHTML=
+`
+<div
+class="slider"
+id="slider-${index}">
+
+<div
+class="slider-track">
+
+${
+images.map(
+img=>
+`
+<img
+src="${img}"
+alt="${name}"
+loading="lazy"
+onerror="this.style.display='none'"
+>
+`
+).join("")
+}
+
+</div>
+
+${
+images.length>1
+?
+`
+<button
+class="slider-arrow left"
+onclick="moveSlider(${index},-1)">
+‹
+</button>
+
+<button
+class="slider-arrow right"
+onclick="moveSlider(${index},1)">
+›
+</button>
+
+<div
+class="slider-dots">
+
+${
+images.map(
+(_,i)=>
+`
+<span
+class="dot ${i===0?"active":""}"
+id="dot-${index}-${i}">
+</span>
+`
+).join("")
+}
+
+</div>
+`
+:
+""
+}
+
+</div>
+`;
+
+}
 
 
 return `
 
 <article class="car-card">
 
-<img
-class="car-image"
-src="${image}"
-alt="${name}"
-loading="lazy"
-onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80'"
->
-
+${imageHTML}
 
 <div class="car-content">
 
@@ -876,20 +917,19 @@ onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?
 ${name}
 </div>
 
-
 <div class="price">
 ₹${price}
 </div>
 
-
 <div class="details">
 
 <span class="detail">
-📅 ${car.Year || "-"}
+📅 ${car.Year||"-"}
 </span>
 
 <span class="detail">
-🛣️ ${Number(car.Km||0).toLocaleString("en-IN")} km
+🛣️ ${Number(car.Km||0)
+.toLocaleString("en-IN")} km
 </span>
 
 <span class="detail">
@@ -902,17 +942,17 @@ ${name}
 
 </div>
 
-
 ${
 description
 ?
-`<div class="description">
+`
+<div class="description">
 ${description}
-</div>`
+</div>
+`
 :
 ""
 }
-
 
 <a
 class="whatsapp"
@@ -928,6 +968,136 @@ target="_blank">
 </article>
 
 `;
+
+}
+
+
+/* =========================
+   SLIDER STATE
+========================= */
+
+const sliderStates={};
+
+
+function moveSlider(index,direction){
+
+const slider=
+document.getElementById(
+"slider-"+index
+);
+
+if(!slider){
+return;
+}
+
+
+const track=
+slider.querySelector(
+".slider-track"
+);
+
+const images=
+track.querySelectorAll("img");
+
+
+if(images.length<=1){
+return;
+}
+
+
+if(sliderStates[index]===undefined){
+
+sliderStates[index]=0;
+
+}
+
+
+sliderStates[index]+=
+direction;
+
+
+if(sliderStates[index]<0){
+
+sliderStates[index]=
+images.length-1;
+
+}
+
+
+if(sliderStates[index]>=images.length){
+
+sliderStates[index]=0;
+
+}
+
+
+track.style.transform=
+"translateX(-"+
+(sliderStates[index]*100)+
+"%)";
+
+
+images.forEach(
+(_,i)=>{
+
+const dot=
+document.getElementById(
+"dot-"+index+"-"+i
+);
+
+if(dot){
+
+dot.classList.toggle(
+"active",
+i===sliderStates[index]
+);
+
+}
+
+}
+);
+
+}
+
+
+/* =========================
+   AUTO ANIMATION
+========================= */
+
+function startSlider(index){
+
+const slider=
+document.getElementById(
+"slider-"+index
+);
+
+if(!slider){
+return;
+}
+
+
+const images=
+slider.querySelectorAll(
+".slider-track img"
+);
+
+
+if(images.length<=1){
+return;
+}
+
+
+sliderStates[index]=0;
+
+
+setInterval(
+function(){
+
+moveSlider(index,1);
+
+},
+3500
+);
 
 }
 
@@ -949,7 +1119,7 @@ return String(value)
 
 
 /* =========================
-   FILTER EVENTS
+   FILTERS
 ========================= */
 
 search.addEventListener(
@@ -968,9 +1138,7 @@ renderCars
 );
 
 
-/* =========================
-   START
-========================= */
+/* START */
 
 loadCars();
 
