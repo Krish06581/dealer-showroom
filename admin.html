@@ -30,10 +30,7 @@ align-items:center;
 gap:15px
 }
 
-h1{
-margin:0;
-font-size:22px
-}
+h1{margin:0;font-size:22px}
 
 .subtitle{
 margin-top:5px;
@@ -79,9 +76,7 @@ border-radius:10px;
 font-size:15px
 }
 
-textarea{
-min-height:100px
-}
+textarea{min-height:100px}
 
 .save{
 width:100%;
@@ -100,15 +95,14 @@ padding:18px 0;
 border-bottom:1px solid #eaecf0
 }
 
-.car:last-child{
-border-bottom:0
-}
+.car:last-child{border-bottom:0}
 
 .car img{
 width:100%;
 height:200px;
 object-fit:cover;
-border-radius:12px
+border-radius:12px;
+display:block
 }
 
 .car h3{
@@ -170,10 +164,15 @@ padding:25px;
 color:#667085
 }
 
-@media(max-width:600px){
-.header{
-align-items:flex-start
+.image-help{
+font-size:12px;
+color:#667085;
+margin-top:6px
 }
+
+@media(max-width:600px){
+.header{align-items:flex-start}
+
 .actions{
 flex-direction:column
 }
@@ -200,8 +199,6 @@ Logout
 
 
 <div class="container">
-
-<!-- ADD CAR -->
 
 <div class="card">
 
@@ -237,28 +234,43 @@ Logout
 </select>
 
 <label>Description</label>
-<textarea id="description" placeholder="Write car details"></textarea>
+<textarea id="description"
+placeholder="Write car details"></textarea>
 
-<label>Car Image</label>
-<input id="image" type="file" accept="image/*">
+<label>Car Images</label>
+
+<input
+id="image"
+type="file"
+accept="image/*"
+multiple
+>
+
+<div class="image-help">
+You can select multiple photos of the same car.
+</div>
 
 <label>Status</label>
+
 <select id="status">
 <option>Available</option>
 <option>Sold</option>
 <option>Reserved</option>
 </select>
 
-<button class="save" id="saveButton" onclick="saveCar()">
+<button
+class="save"
+id="saveButton"
+onclick="saveCar()">
+
 Publish Car
+
 </button>
 
 <div id="message" class="message"></div>
 
 </div>
 
-
-<!-- INVENTORY -->
 
 <div class="card">
 
@@ -275,18 +287,10 @@ Loading cars...
 
 <script>
 
-/* =========================
-   LOGIN
-========================= */
-
 if(localStorage.getItem("dealer_logged_in") !== "true"){
 window.location.href="login.html";
 }
 
-
-/* =========================
-   SUPABASE
-========================= */
 
 const SUPABASE_URL =
 "https://lpdalirembwxxeurwhhh.supabase.co";
@@ -305,10 +309,6 @@ const saveButton =
 document.getElementById("saveButton");
 
 
-/* =========================
-   LOGOUT
-========================= */
-
 function logout(){
 
 localStorage.removeItem("dealer_logged_in");
@@ -320,10 +320,6 @@ window.location.replace("login.html");
 }
 
 
-/* =========================
-   MESSAGE
-========================= */
-
 function showMessage(text,type){
 
 message.textContent=text;
@@ -333,224 +329,22 @@ message.className="message "+type;
 
 
 /* =========================
-   LOAD INVENTORY
+   UPLOAD ONE IMAGE
 ========================= */
 
-async function loadInventory(){
+async function uploadImage(file){
 
-inventory.innerHTML="<div class='empty'>Loading cars...</div>";
-
-try{
-
-const response = await fetch(
-SUPABASE_URL + "/rest/v1/Cars?select=*",
-{
-method:"GET",
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY,
-"Accept":"application/json"
-}
-}
+const fileName =
+Date.now()+"-"+Math.random()
+.toString(36)
+.substring(2,8)+"-"+
+file.name.replace(
+/[^a-zA-Z0-9.-]/g,
+"-"
 );
 
-const result = await response.text();
 
-if(!response.ok){
-throw new Error(result);
-}
-
-const cars = JSON.parse(result);
-
-if(!Array.isArray(cars) || cars.length === 0){
-
-inventory.innerHTML=
-"<div class='empty'>No cars in inventory.</div>";
-
-return;
-
-}
-
-
-/* CREATE CAR CARDS */
-
-inventory.innerHTML="";
-
-cars.forEach(function(car){
-
-const box=document.createElement("div");
-
-box.className="car";
-
-
-if(car.Image_url){
-
-const img=document.createElement("img");
-
-img.src=car.Image_url;
-
-img.alt=car.Name || "Car";
-
-box.appendChild(img);
-
-}
-
-
-const title=document.createElement("h3");
-
-title.textContent=car.Name || "Unnamed Car";
-
-box.appendChild(title);
-
-
-const price=document.createElement("p");
-
-price.textContent=
-"₹"+Number(car.Price || 0).toLocaleString("en-IN");
-
-box.appendChild(price);
-
-
-const details=document.createElement("p");
-
-details.textContent=
-(car.Year || "")+
-" · "+
-Number(car.Km || 0).toLocaleString("en-IN")+
-" km";
-
-box.appendChild(details);
-
-
-const fuel=document.createElement("p");
-
-fuel.textContent=
-(car.Fuel || "")+
-" · "+
-(car.Transmission || "");
-
-box.appendChild(fuel);
-
-
-const status=document.createElement("p");
-
-status.textContent="Status: ";
-
-const bold=document.createElement("b");
-
-bold.textContent=car.Status || "Available";
-
-status.appendChild(bold);
-
-box.appendChild(status);
-
-
-/* BUTTONS */
-
-const actions=document.createElement("div");
-
-actions.className="actions";
-
-
-const soldButton=document.createElement("button");
-
-soldButton.className="sold";
-
-soldButton.textContent="🟢 Mark Sold";
-
-soldButton.onclick=function(){
-
-markSold(car.Name);
-
-};
-
-
-actions.appendChild(soldButton);
-
-
-const deleteButton=document.createElement("button");
-
-deleteButton.className="delete";
-
-deleteButton.textContent="🗑️ Delete";
-
-deleteButton.onclick=function(){
-
-deleteCar(car.Name);
-
-};
-
-
-actions.appendChild(deleteButton);
-
-
-box.appendChild(actions);
-
-inventory.appendChild(box);
-
-});
-
-
-}catch(error){
-
-console.error("Inventory error:",error);
-
-inventory.innerHTML=
-"<div class='empty'>"+
-"<b>Inventory error</b>"+
-"<br><br>"+
-error.message+
-"</div>";
-
-}
-
-}
-
-
-/* =========================
-   SAVE CAR
-========================= */
-
-async function saveCar(){
-
-try{
-
-saveButton.disabled=true;
-saveButton.textContent="Saving...";
-
-
-const name=document.getElementById("name").value.trim();
-const price=document.getElementById("price").value;
-const year=document.getElementById("year").value;
-const km=document.getElementById("km").value;
-const fuel=document.getElementById("fuel").value;
-const transmission=document.getElementById("transmission").value;
-const description=document.getElementById("description").value.trim();
-const status=document.getElementById("status").value;
-const file=document.getElementById("image").files[0];
-
-
-if(!name || !price || !year || !km || !fuel || !transmission){
-
-throw new Error("Please fill all required fields.");
-
-}
-
-if(!file){
-
-throw new Error("Please select a car image.");
-
-}
-
-
-showMessage("Uploading image...","success");
-
-
-const fileName=
-Date.now()+"-"+file.name.replace(/[^a-zA-Z0-9.-]/g,"-");
-
-
-const uploadResponse=await fetch(
+const response = await fetch(
 
 SUPABASE_URL+
 "/storage/v1/object/Car%20images/"+
@@ -568,41 +362,150 @@ headers:{
 body:file
 
 }
+
 );
 
 
-if(!uploadResponse.ok){
+if(!response.ok){
 
 throw new Error(
 "Image upload failed: "+
-await uploadResponse.text()
+await response.text()
 );
 
 }
 
 
-const imageUrl=
-SUPABASE_URL+
+return SUPABASE_URL+
 "/storage/v1/object/public/Car%20images/"+
 encodeURIComponent(fileName);
 
+}
+
+
+/* =========================
+   SAVE CAR
+========================= */
+
+async function saveCar(){
+
+try{
+
+saveButton.disabled=true;
+saveButton.textContent="Saving...";
+
+
+const name=
+document.getElementById("name").value.trim();
+
+const price=
+document.getElementById("price").value;
+
+const year=
+document.getElementById("year").value;
+
+const km=
+document.getElementById("km").value;
+
+const fuel=
+document.getElementById("fuel").value;
+
+const transmission=
+document.getElementById("transmission").value;
+
+const description=
+document.getElementById("description").value.trim();
+
+const status=
+document.getElementById("status").value;
+
+const files=
+Array.from(
+document.getElementById("image").files
+);
+
+
+if(
+!name ||
+!price ||
+!year ||
+!km ||
+!fuel ||
+!transmission
+){
+
+throw new Error(
+"Please fill all required fields."
+);
+
+}
+
+
+if(files.length===0){
+
+throw new Error(
+"Please select at least one car image."
+);
+
+}
+
+
+showMessage(
+"Uploading "+files.length+" image(s)...",
+"success"
+);
+
+
+/* Upload all images */
+
+const imageUrls=[];
+
+for(let i=0;i<files.length;i++){
+
+showMessage(
+"Uploading image "+
+(i+1)+" of "+
+files.length+"...",
+"success"
+);
+
+const url=
+await uploadImage(files[i]);
+
+imageUrls.push(url);
+
+}
+
+
+/* Save URLs as JSON */
 
 const carData={
 
 Name:name,
+
 Price:Number(price),
+
 Year:Number(year),
+
 Km:Number(km),
+
 Fuel:fuel,
+
 Transmission:transmission,
+
 Description:description,
-Image_url:imageUrl,
+
+Image_url:JSON.stringify(imageUrls),
+
 Status:status
 
 };
 
 
-showMessage("Saving car...","success");
+showMessage(
+"Saving car...",
+"success"
+);
 
 
 const response=await fetch(
@@ -642,6 +545,8 @@ showMessage(
 );
 
 
+/* Clear form */
+
 document.getElementById("name").value="";
 document.getElementById("price").value="";
 document.getElementById("year").value="";
@@ -676,18 +581,255 @@ saveButton.textContent="Publish Car";
 
 
 /* =========================
+   GET IMAGE LIST
+========================= */
+
+function getImages(car){
+
+if(!car.Image_url){
+return [];
+}
+
+try{
+
+const parsed=
+JSON.parse(car.Image_url);
+
+if(Array.isArray(parsed)){
+return parsed;
+}
+
+}catch(e){}
+
+
+/* Old single-image format */
+
+return [car.Image_url];
+
+}
+
+
+/* =========================
+   LOAD INVENTORY
+========================= */
+
+async function loadInventory(){
+
+inventory.innerHTML=
+"<div class='empty'>Loading cars...</div>";
+
+try{
+
+const response=await fetch(
+
+SUPABASE_URL+
+"/rest/v1/Cars?select=*",
+
+{
+method:"GET",
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Accept":"application/json"
+}
+
+}
+
+);
+
+
+const result=
+await response.text();
+
+
+if(!response.ok){
+
+throw new Error(result);
+
+}
+
+
+const cars=
+JSON.parse(result);
+
+
+if(!Array.isArray(cars) || cars.length===0){
+
+inventory.innerHTML=
+"<div class='empty'>No cars in inventory.</div>";
+
+return;
+
+}
+
+
+inventory.innerHTML="";
+
+
+cars.forEach(function(car){
+
+const box=
+document.createElement("div");
+
+box.className="car";
+
+
+const images=
+getImages(car);
+
+
+if(images.length){
+
+const img=
+document.createElement("img");
+
+img.src=images[0];
+
+img.alt=car.Name || "Car";
+
+box.appendChild(img);
+
+}
+
+
+const title=
+document.createElement("h3");
+
+title.textContent=
+car.Name || "Unnamed Car";
+
+box.appendChild(title);
+
+
+const price=
+document.createElement("p");
+
+price.textContent=
+"₹"+
+Number(car.Price||0)
+.toLocaleString("en-IN");
+
+box.appendChild(price);
+
+
+const details=
+document.createElement("p");
+
+details.textContent=
+(car.Year||"")+
+" · "+
+Number(car.Km||0)
+.toLocaleString("en-IN")+
+" km";
+
+box.appendChild(details);
+
+
+const fuel=
+document.createElement("p");
+
+fuel.textContent=
+(car.Fuel||"")+
+" · "+
+(car.Transmission||"");
+
+box.appendChild(fuel);
+
+
+const status=
+document.createElement("p");
+
+status.textContent="Status: ";
+
+const bold=
+document.createElement("b");
+
+bold.textContent=
+car.Status || "Available";
+
+status.appendChild(bold);
+
+box.appendChild(status);
+
+
+const actions=
+document.createElement("div");
+
+actions.className="actions";
+
+
+const soldButton=
+document.createElement("button");
+
+soldButton.className="sold";
+
+soldButton.textContent="🟢 Mark Sold";
+
+soldButton.onclick=function(){
+
+markSold(car.Name);
+
+};
+
+actions.appendChild(soldButton);
+
+
+const deleteButton=
+document.createElement("button");
+
+deleteButton.className="delete";
+
+deleteButton.textContent="🗑️ Delete";
+
+deleteButton.onclick=function(){
+
+deleteCar(car.Name);
+
+};
+
+actions.appendChild(deleteButton);
+
+
+box.appendChild(actions);
+
+inventory.appendChild(box);
+
+});
+
+
+}catch(error){
+
+console.error(error);
+
+inventory.innerHTML=
+"<div class='empty'>"+
+"<b>Inventory error</b>"+
+"<br><br>"+
+error.message+
+"</div>";
+
+}
+
+}
+
+
+/* =========================
    SOLD
 ========================= */
 
 async function markSold(name){
 
-if(!confirm("Mark "+name+" as SOLD?")){
+if(!confirm(
+"Mark "+name+" as SOLD?"
+)){
 return;
 }
 
 try{
 
-const response=await fetch(
+const response=
+await fetch(
 
 SUPABASE_URL+
 "/rest/v1/Cars?Name=eq."+
@@ -726,7 +868,6 @@ showMessage(
 "success"
 );
 
-
 await loadInventory();
 
 
@@ -748,13 +889,16 @@ showMessage(
 
 async function deleteCar(name){
 
-if(!confirm("Delete "+name+" permanently?")){
+if(!confirm(
+"Delete "+name+" permanently?"
+)){
 return;
 }
 
 try{
 
-const response=await fetch(
+const response=
+await fetch(
 
 SUPABASE_URL+
 "/rest/v1/Cars?Name=eq."+
@@ -788,7 +932,6 @@ showMessage(
 "success"
 );
 
-
 await loadInventory();
 
 
@@ -804,9 +947,7 @@ showMessage(
 }
 
 
-/* =========================
-   START
-========================= */
+/* START */
 
 loadInventory();
 
